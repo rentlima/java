@@ -38,7 +38,7 @@ public class TelaClientesCadController {
         String endereco = view.getTxtCadEndereco().getText();
         String cep = view.getTxtCadCep().getText();
         String cidade = view.getTxtCadCidade().getText();
-        String uf = view.getTxtCadUf().getText();
+        String uf = view.getCbUf().getSelectedItem().toString();
         String numero = view.getTxtCadTelefone().getText();
         String bairro = view.getTxtCadBairro().getText();
        
@@ -50,7 +50,7 @@ public class TelaClientesCadController {
                 if((view.getTxtCadNome().getText().isEmpty()) || view.getTxtCadCpf().getText().isEmpty() || 
                         view.getTxtCadEndereco().getText().isEmpty() || view.getTxtCadRg().getText().isEmpty() || 
                         view.getTxtCadCep().getText().isEmpty() || view.getTxtCadCidade().getText().isEmpty()  ||
-                        view.getTxtCadUf().getText().isEmpty() || view.getTxtCadTelefone().getText().isEmpty() ||
+                          view.getTxtCadTelefone().getText().isEmpty() ||view.getCbUf().getSelectedItem().toString().isEmpty() ||
                         view.getTxtCadBairro().getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
             }else{
@@ -69,7 +69,7 @@ public class TelaClientesCadController {
          view.getTxtCadTelefone().setText(null);
          view.getTxtCadEndereco().setText(null);
          view.getTxtCadCpf().setText(null);
-         view.getTxtCadUf().setText(null);
+         view.getCbUf().setSelectedItem(null);
          view.getTxtCadCidade().setText(null);
          
                 }

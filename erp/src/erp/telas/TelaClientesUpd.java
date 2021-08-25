@@ -47,19 +47,11 @@ public class TelaClientesUpd extends javax.swing.JInternalFrame {
         initComponents();
         txtId.setDocument(new SoNumeros());
         txtCadTelefone.setDocument(new SoNumeros());
+        cbUf.setSelectedItem(null);
         con = ConnectionFactory.getConnection();
         /* linhas abaixo fazem os campos iniciarem não editaveis,
          ficando editavel apenas quando clica no botão "Ver dados" */
-        txtCadBairro.setEnabled(false);
-        txtCadCep.setEnabled(false);
-        txtCadCidade.setEnabled(false);
-        txtCadCpf.setEnabled(false);
-        txtCadEndereco.setEnabled(false);
-        txtCadNome.setEnabled(false);
-        txtCadRg.setEnabled(false);
-        txtCadTelefone.setEnabled(false);
-        txtCadUf.setEnabled(false);
-        jButton1.setEnabled(false);
+        bloquearcampos();
         
         
         
@@ -89,7 +81,7 @@ public class TelaClientesUpd extends javax.swing.JInternalFrame {
                 txtCadEndereco.setText(rs.getString(5));
                 txtCadCep.setText(rs.getString(6));
                 txtCadCidade.setText(rs.getString(7));
-                txtCadUf.setText(rs.getString(8));
+                cbUf.setSelectedItem(rs.getString(8));
                 txtCadTelefone.setText(rs.getString(9));
                 txtCadBairro.setText(rs.getString(10));
             }
@@ -149,10 +141,10 @@ public class TelaClientesUpd extends javax.swing.JInternalFrame {
         txtCadCep = new javax.swing.JFormattedTextField();
         txtCadCpf = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtCadUf = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        cbUf = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -228,6 +220,8 @@ public class TelaClientesUpd extends javax.swing.JInternalFrame {
             }
         });
 
+        cbUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -283,16 +277,18 @@ public class TelaClientesUpd extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCadUf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(42, 42, 42))))
+                                .addComponent(cbUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,7 +305,7 @@ public class TelaClientesUpd extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addComponent(txtCadCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(txtCadUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbUf, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCadEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -324,13 +320,13 @@ public class TelaClientesUpd extends javax.swing.JInternalFrame {
                         .addComponent(jLabel11)
                         .addComponent(txtCadBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCadRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel2)
                     .addComponent(txtCadTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         setBounds(0, 0, 600, 355);
@@ -343,6 +339,8 @@ public class TelaClientesUpd extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      
      alterarClientes();
+     limparcampos();
+     bloquearcampos();
   
       
        
@@ -366,28 +364,10 @@ public class TelaClientesUpd extends javax.swing.JInternalFrame {
         Clientes list = new Clientes(id);
         boolean existeid = existeID(list);
         if (existeid) { // se o id informado existir , todos os campos ficam editaveis.
-            txtCadBairro.setEnabled(true);
-            txtCadCep.setEnabled(true);
-            txtCadCidade.setEnabled(true);
-        txtCadCpf.setEnabled(true);
-        txtCadEndereco.setEnabled(true);
-        txtCadNome.setEnabled(true);
-        txtCadRg.setEnabled(true);
-        txtCadTelefone.setEnabled(true);
-        txtCadUf.setEnabled(true);
-        jButton1.setEnabled(true);
+            ativarcampos();
         JOptionPane.showMessageDialog(null, "Altere os campos que deseja, e em seguida clique em atualizar");
         }else { // se não existir , os campos continuam sem interação.
-            txtCadBairro.setEnabled(false);
-        txtCadCep.setEnabled(false);
-        txtCadCidade.setEnabled(false);
-        txtCadCpf.setEnabled(false);
-        txtCadEndereco.setEnabled(false);
-        txtCadNome.setEnabled(false);
-        txtCadRg.setEnabled(false);
-        txtCadTelefone.setEnabled(false);
-        txtCadUf.setEnabled(false);
-        jButton1.setEnabled(false);
+            bloquearcampos();
         }
        } catch (SQLException ex) {
            Logger.getLogger(TelaClientesUpd.class.getName()).log(Level.SEVERE, null, ex);
@@ -483,13 +463,6 @@ public class TelaClientesUpd extends javax.swing.JInternalFrame {
         this.txtCadTelefone = txtCadTelefone;
     }
 
-    public JTextField getTxtCadUf() {
-        return txtCadUf;
-    }
-
-    public void setTxtCadUf(JTextField txtCadUf) {
-        this.txtCadUf = txtCadUf;
-    }
 
     public JTextField getTxtId() {
         return txtId;
@@ -502,6 +475,7 @@ public class TelaClientesUpd extends javax.swing.JInternalFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbUf;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -522,7 +496,6 @@ public class TelaClientesUpd extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCadNome;
     private javax.swing.JTextField txtCadRg;
     private javax.swing.JTextField txtCadTelefone;
-    private javax.swing.JTextField txtCadUf;
     private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 
@@ -541,7 +514,7 @@ private void alterarClientes(){
     endereco = txtCadEndereco.getText();
     cidade = txtCadCidade.getText();
     cep = txtCadCep.getText();
-    uf = txtCadUf.getText();
+    uf = cbUf.getSelectedItem().toString();
     numero = txtCadTelefone.getText();
     bairro = txtCadBairro.getText();
     
@@ -559,17 +532,17 @@ private void alterarClientes(){
     if ((txtId.getText().isEmpty()||txtCadNome.getText().isEmpty() || txtCadCpf.getText().isEmpty() || 
                         txtCadEndereco.getText().isEmpty() || txtCadRg.getText().isEmpty() || 
                         txtCadCep.getText().isEmpty() || txtCadCidade.getText().isEmpty()  ||
-                        txtCadUf.getText().isEmpty() || txtCadTelefone.getText().isEmpty() ||
+                         txtCadTelefone.getText().isEmpty() || cbUf.getSelectedItem().toString().isEmpty() ||
                         txtCadBairro.getText().isEmpty())){
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos."); 
         
     } else {
         ClientesDAO objDao = new ClientesDAO();
-    objDao.updateClientes(obj);
+        objDao.updateClientes(obj);
     }
     
     
-    
+ 
     
     
     
@@ -578,9 +551,44 @@ private void alterarClientes(){
 
 
 
+   public void limparcampos() {
+      txtCadNome.setText(null);
+        txtCadBairro.setText(null);
+         txtCadRg.setText(null);
+         txtCadCep.setText(null);
+         txtCadTelefone.setText(null);
+         txtCadEndereco.setText(null);
+         txtCadCpf.setText(null);
+         cbUf.setSelectedItem(null);
+         txtCadCidade.setText(null);
 
+}
+   
+public void bloquearcampos(){
+    txtCadBairro.setEnabled(false);
+        txtCadCep.setEnabled(false);
+        txtCadCidade.setEnabled(false);
+        txtCadCpf.setEnabled(false);
+        txtCadEndereco.setEnabled(false);
+        txtCadNome.setEnabled(false);
+        txtCadRg.setEnabled(false);
+        txtCadTelefone.setEnabled(false);
+        cbUf.setEnabled(false);
+        jButton1.setEnabled(false);
+}
 
-
+public void ativarcampos(){
+    txtCadBairro.setEnabled(true);
+        txtCadCep.setEnabled(true);
+        txtCadCidade.setEnabled(true);
+        txtCadCpf.setEnabled(true);
+        txtCadEndereco.setEnabled(true);
+        txtCadNome.setEnabled(true);
+        txtCadRg.setEnabled(true);
+        txtCadTelefone.setEnabled(true);
+        cbUf.setEnabled(true);
+        jButton1.setEnabled(true);
+}
 
 
 
