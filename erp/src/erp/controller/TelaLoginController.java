@@ -8,7 +8,6 @@ package erp.controller;
 import erp.dao.UsuariosDAO;
 import erp.jdbc.ConnectionFactory;
 import erp.objects.Usuarios;
-import erp.telas.MenuClientes;
 import erp.telas.TelaClientesCad;
 import erp.telas.TelaLogin;
 import erp.telas.TelaPrincipalMDI;

@@ -8,7 +8,7 @@ package erp.controllernovo;
 import erp.dao.ClientesDAO;
 import erp.jdbc.ConnectionFactory;
 import erp.objects.Clientes;
-import erp.telas.TelaExcluirClientes;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;

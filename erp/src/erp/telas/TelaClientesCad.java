@@ -6,7 +6,7 @@
 package erp.telas;
 
 import erp.controllernovo.TelaClientesCadController;
-import erp.teste.SoNumeros;
+import erp.metodos.SoNumeros;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -107,21 +107,21 @@ public class TelaClientesCad extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 64, 47));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(45, 139, 206));
         jLabel1.setFont(new java.awt.Font("Myanmar Text", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nome:");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, 24));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, 24));
 
         txtCadNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCadNomeKeyPressed(evt);
             }
         });
-        jPanel3.add(txtCadNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 167, 24));
+        jPanel3.add(txtCadNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 167, 24));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/novas/user (96).png"))); // NOI18N
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, 120));
@@ -141,13 +141,13 @@ public class TelaClientesCad extends javax.swing.JInternalFrame {
                 txtCadCpfKeyPressed(evt);
             }
         });
-        jPanel3.add(txtCadCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 150, 24));
+        jPanel3.add(txtCadCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 150, 24));
 
         jLabel2.setBackground(new java.awt.Color(45, 139, 206));
         jLabel2.setFont(new java.awt.Font("Myanmar Text", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("RG:");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, 24));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, 24));
 
         txtCadRg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,13 +159,13 @@ public class TelaClientesCad extends javax.swing.JInternalFrame {
                 txtCadRgKeyPressed(evt);
             }
         });
-        jPanel3.add(txtCadRg, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 167, 24));
+        jPanel3.add(txtCadRg, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 167, 24));
 
         jLabel9.setBackground(new java.awt.Color(45, 139, 206));
         jLabel9.setFont(new java.awt.Font("Myanmar Text", 1, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Telefone:");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, 24));
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, 24));
 
         txtCadTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,20 +177,20 @@ public class TelaClientesCad extends javax.swing.JInternalFrame {
                 txtCadTelefoneKeyPressed(evt);
             }
         });
-        jPanel3.add(txtCadTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 150, 24));
+        jPanel3.add(txtCadTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 150, 24));
 
         jLabel3.setBackground(new java.awt.Color(45, 139, 206));
         jLabel3.setFont(new java.awt.Font("Myanmar Text", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("CPF:");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, 24));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, -1, 24));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 595, 160));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 595, 173));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/novas/home__96_-removebg-preview.png"))); // NOI18N
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtCadEndereco.addActionListener(new java.awt.event.ActionListener() {
