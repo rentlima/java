@@ -5,7 +5,11 @@
  */
 package erp.metodos;
 
+import erp.dao.ClientesDAO;
+import erp.dao.FornecedorDAO;
 import erp.dao.ProdutosDAO;
+import erp.objects.Clientes;
+import erp.objects.Fornecedor;
 import erp.objects.Produtos;
 import java.sql.SQLException;
 
@@ -18,16 +22,12 @@ public class TesteMetodos {
     
     public static void main (String[] args) throws SQLException{
         
-       /* Produtos produtos = new Produtos();
-        produtos.setMarca("razer");
-        produtos.setModelo("JWQOWES98756");
-        produtos.setNome_P("RAZER ABYSSUS");
-        produtos.setQuantidade(5);
-        produtos.setTipo("Mouse Gamer");
-        produtos.setValor(129.90);
-        ProdutosDAO produtosDAO = new ProdutosDAO();
-        produtosDAO.adicionarProduto(produtos);
-        System.out.println(produtosDAO.listar());
-    */
+
+      Produtos p = new Produtos();
+      p.setCodigo(4);
+      
+      ProdutosDAO dao = new ProdutosDAO();
+      dao.deletarProduto(p);
+        
             }
 }

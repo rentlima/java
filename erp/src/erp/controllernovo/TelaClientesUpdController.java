@@ -9,7 +9,6 @@ import erp.dao.ClientesDAO;
 import erp.jdbc.ConnectionFactory;
 import erp.objects.Clientes;
 import erp.telas.CadastroLogin;
-import erp.telas.TelaClientesUpd;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,16 +18,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Miguel
+ * @author Renato
  */
 public class TelaClientesUpdController {
     
- private  TelaClientesUpd view ;
+
  
- 
-public TelaClientesUpdController (TelaClientesUpd view){
-    this.view = view;
-}
+
+
  //////////////////////////////////////////////////////////
         //       CONTROLLER NÃO UTILIZADO             //
         //       UPDATE FEITO DIRETAMENTE NA TelaClientesUpd          //

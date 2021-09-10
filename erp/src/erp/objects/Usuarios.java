@@ -7,7 +7,7 @@ package erp.objects;
 
 /**
  *
- * @author Miguel
+ * @author Renato
  */
 public class Usuarios {
     

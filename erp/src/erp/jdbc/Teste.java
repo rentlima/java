@@ -7,7 +7,7 @@ package erp.jdbc;
 import javax.swing.JOptionPane;
 /**
  *
- * @author Miguel
+ * @author Renato
  */
 public class Teste {
     

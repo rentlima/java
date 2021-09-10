@@ -24,7 +24,7 @@ import javax.swing.plaf.synth.SynthButtonUI;
 
 /**
  *
- * @author Miguel
+ * @author Renato
  */
 public class TelaLogin extends javax.swing.JFrame {
 
@@ -77,6 +77,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
+        setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(300, 310));
         setUndecorated(true);
         setResizable(false);
@@ -103,7 +104,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(45, 139, 206));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(45, 139, 206));
+        jLabel1.setForeground(new java.awt.Color(0, 50, 199));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -112,13 +113,13 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setPreferredSize(new java.awt.Dimension(171, 17));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(45, 139, 206));
+        jLabel2.setForeground(new java.awt.Color(0, 50, 199));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Senha");
 
-        btnEntrar.setBackground(new java.awt.Color(0, 153, 0));
+        btnEntrar.setBackground(new java.awt.Color(187, 187, 250));
         btnEntrar.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEntrar.setForeground(new java.awt.Color(0, 153, 0));
         btnEntrar.setText("Entrar");
         btnEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEntrar.setFocusPainted(false);
@@ -141,9 +142,9 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        btnRegistrar.setBackground(new java.awt.Color(58, 65, 84));
+        btnRegistrar.setBackground(new java.awt.Color(187, 187, 250));
         btnRegistrar.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setForeground(new java.awt.Color(58, 65, 84));
         btnRegistrar.setText("Registrar");
         btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrar.setFocusPainted(false);
@@ -167,7 +168,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(45, 139, 206));
+        jPanel1.setBackground(new java.awt.Color(0, 50, 199));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -183,9 +184,9 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3.setText("Tela de Login");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 300, -1));
 
-        btnSair.setBackground(new java.awt.Color(204, 0, 0));
+        btnSair.setBackground(new java.awt.Color(187, 187, 250));
         btnSair.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnSair.setForeground(new java.awt.Color(255, 255, 255));
+        btnSair.setForeground(new java.awt.Color(204, 0, 0));
         btnSair.setText("Sair");
         btnSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSair.setFocusPainted(false);
@@ -271,13 +272,13 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnRegistrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseEntered
-         btnRegistrar.setBackground(new Color(187,187,187));
-         btnRegistrar.setForeground(new Color(58,65,84));
+         btnRegistrar.setBackground(new Color(58,65,84));
+         btnRegistrar.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_btnRegistrarMouseEntered
 
     private void btnRegistrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseExited
-        btnRegistrar.setBackground(new Color(58,65,84));
-         btnRegistrar.setForeground(new Color(255,255,255));
+        btnRegistrar.setBackground(new Color(187,187,250));
+         btnRegistrar.setForeground(new Color(58,65,84));
     }//GEN-LAST:event_btnRegistrarMouseExited
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -285,13 +286,13 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnSairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseEntered
-        btnSair.setBackground(new Color(187,187,187));
-        btnSair.setForeground(new Color(204,0,0));
+        btnSair.setBackground(new Color(204,0,0));
+        btnSair.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_btnSairMouseEntered
 
     private void btnSairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseExited
-        btnSair.setBackground(new Color(204,0,0));
-        btnSair.setForeground(new Color(255,255,255));
+        btnSair.setBackground(new Color(187,187,250));
+        btnSair.setForeground(new Color(204,0,0));
     }//GEN-LAST:event_btnSairMouseExited
                                         
 
@@ -337,14 +338,14 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnEntrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseExited
-        btnEntrar.setBackground(new Color(0,153,0));
-        btnEntrar.setForeground(new Color(255,255,255));
+        btnEntrar.setBackground(new Color(187,187,250));
+        btnEntrar.setForeground(new Color(0,153,0));
     }//GEN-LAST:event_btnEntrarMouseExited
 
     private void btnEntrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseEntered
         
-        btnEntrar.setBackground(new Color(187,187,187));
-        btnEntrar.setForeground(new Color(0,153,0));
+        btnEntrar.setBackground(new Color(0,153,0));
+        btnEntrar.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_btnEntrarMouseEntered
 
     private void jPasswordFieldSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaKeyPressed

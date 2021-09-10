@@ -1,54 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package erp.objects;
 
 /**
  *
  * @author Renato
  */
-public class Produtos {
-    private int codigo;
+public class Produtos  {
+    
+    private Integer codigo;
     private String nome_P;
     private String tipo;
-    private String marca;
-    private String modelo;
-    private double valor;
-    private int quantidade;
+    private Integer quantidade;
+    private Float custo_c;
+    private Float valor_v;
+    private String cod_forn;
 
     public Produtos() {
     }
-
     
-    public Produtos(int codigo, String nome_P, String tipo, String marca, String modelo, double valor, int quantidade) {
-        this.codigo = codigo;
-        this.nome_P = nome_P;
-        this.tipo = tipo;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.valor = valor;
-        this.quantidade = quantidade;
+    public String getCod_forn() {
+        return cod_forn;
     }
 
-    
+    public void setCod_forn(String cod_forn) {
+        this.cod_forn = cod_forn;
+    }
 
     public Produtos(int codigo) {
         this.codigo = codigo;
     }
 
-    public Produtos(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
+
+   
 
     public String getNome_P() {
         return nome_P;
@@ -66,37 +55,33 @@ public class Produtos {
         this.tipo = tipo;
     }
 
-    public String getMarca() {
-        return marca;
+    public Float getCusto_c() {
+        return custo_c;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setCusto_c(Float custo_c) {
+        this.custo_c = custo_c;
     }
 
-    public String getModelo() {
-        return modelo;
+    public Float getValor_v() {
+        return valor_v;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    public void setValor_v(Float valor_v) {
+        this.valor_v = valor_v;
     }
 
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
-    public int getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
+
+    
+
+    
     
     
     

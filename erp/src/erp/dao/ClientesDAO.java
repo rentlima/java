@@ -8,7 +8,6 @@ package erp.dao;
 import java.sql.Connection;
 import erp.jdbc.ConnectionFactory;
 import erp.objects.Clientes;
-import erp.objects.Usuarios;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,10 +16,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import erp.telas.TelaClientesCad;
+
 /**
  *
- * @author Miguel
+ * @author Renato
  */
 public class ClientesDAO {
     
@@ -40,7 +39,7 @@ public class ClientesDAO {
     
     public void adicionarCliente(Clientes obj){
         try {
-            String sql = "INSERT INTO clientes (nome, rg , cpf , endereco , cep , cidade , uf , numero , bairro) values (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO clientes (nome, rg , cpf , endereco , cep , cidade , uf , telefone , bairro) values (?,?,?,?,?,?,?,?,?)";
             PreparedStatement stm = con.prepareStatement(sql);
             
             stm.setString(1, obj.getNome());
@@ -50,7 +49,7 @@ public class ClientesDAO {
             stm.setString(5, obj.getCep());
             stm.setString(6, obj.getCidade());
             stm.setString(7, obj.getUf());
-            stm.setString(8, obj.getNumero());
+            stm.setString(8, obj.getTelefone());
             stm.setString(9, obj.getBairro());
             stm.executeUpdate();
             
@@ -67,7 +66,7 @@ public class ClientesDAO {
 
     public void updateClientes(Clientes obj) {
         try {
-            String sql = "update clientes set nome=?, rg=? , cpf=? , endereco=? , cep=? , cidade=? , uf=? , numero=? , bairro=? where id=? ";
+            String sql = "update clientes set nome=?, rg=? , cpf=? , endereco=? , cep=? , cidade=? , uf=? , telefone=? , bairro=? where id=? ";
             
             PreparedStatement stm = con.prepareStatement(sql);
             
@@ -78,7 +77,7 @@ public class ClientesDAO {
             stm.setString(5, obj.getCep());
             stm.setString(6, obj.getCidade());
             stm.setString(7, obj.getUf());
-            stm.setString(8, obj.getNumero());
+            stm.setString(8, obj.getTelefone());
             stm.setString(9, obj.getBairro());
             stm.setInt(10, obj.getId());
             
@@ -131,7 +130,7 @@ public class ClientesDAO {
                cliente.setNome(rs.getString("nome"));
                cliente.setRg(rs.getString("rg"));
                cliente.setUf(rs.getString("uf"));
-               cliente.setNumero(rs.getString("numero"));
+               cliente.setTelefone(rs.getString("telefone"));
                clientes.add(cliente);
            } 
              
@@ -161,6 +160,32 @@ public class ClientesDAO {
        
         return result.next();
 }
+    
+    public boolean existeCpf(Clientes ext) throws SQLException {
+       // Esse metodo vai consultar o banco e trazer dados ;
+       String sql = "select * from clientes where cpf = ?";
+       
+       PreparedStatement st = con.prepareStatement(sql);
+       st.setString(1, ext.getCpf());
+       
+       st.executeQuery();
+       
+       //esses dados podem ser recebidos por esse metodo abaixo;
+       // essa variavel result é o resultado da pesquisa no banco;
+      ResultSet result = st.getResultSet();
+      
+       
+        return result.next();
+}
+    public void receberNome(Clientes nome) throws SQLException{
+        String sql = "select nome from clientes where cpf ?";
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setString(1,nome.getNome() );
+        st.setString(2, nome.getCpf());
+        
+        st.executeUpdate();
+    }
+    
 // 
     
     

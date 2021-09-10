@@ -5,10 +5,13 @@
  */
 package erp.telas;
 
+import com.sun.java.swing.plaf.windows.WindowsButtonUI;
 import erp.controller.CadastroLoginController;
 import erp.dao.UsuariosDAO;
 import erp.jdbc.ConnectionFactory;
+import erp.metodos.SoNumeros;
 import erp.objects.Usuarios;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,10 +21,11 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.plaf.metal.MetalButtonUI;
 
 /**
  *
- * @author Miguel
+ * @author Renato
  */
 public class CadastroLogin extends javax.swing.JFrame {
 
@@ -34,6 +38,11 @@ public class CadastroLogin extends javax.swing.JFrame {
         
         initComponents();
         controller = new CadastroLoginController(this);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setOpaque(true);
+        jButton1.setBackground(Color.GREEN);
+      
+
     }
     
     // terminar esse metodo , para fechar automaticamente a janela apos o cadastro
@@ -78,6 +87,8 @@ public class CadastroLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPasswordFieldSenha = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtConfirmaSenha = new javax.swing.JTextField();
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/erp/telas/imagens/mqdefault.jpg"))); // NOI18N
 
@@ -106,13 +117,18 @@ public class CadastroLogin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Senha");
 
+        jButton1.setBackground(new java.awt.Color(69, 73, 74));
         jButton1.setText("Registrar Usuario");
+        jButton1.setBorderPainted(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel3.setText("Repita a Senha");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,12 +136,14 @@ public class CadastroLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel1)
-                    .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                    .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtConfirmaSenha))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -133,15 +151,19 @@ public class CadastroLogin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jLabel2)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
 
         pack();
@@ -149,8 +171,17 @@ public class CadastroLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            if (jPasswordFieldSenha.getText().equalsIgnoreCase(txtConfirmaSenha.getText())){
+                controller.salvarUsuario();
+            }else {
+                JOptionPane.showMessageDialog(null, "Senhas informadas não se equivalem");
+            }
+        } catch (Exception e) {
+            
+        }
         
-        controller.salvarUsuario();
+        
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -215,11 +246,13 @@ public class CadastroLogin extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JTextField jTextFieldUsuario;
+    private javax.swing.JTextField txtConfirmaSenha;
     // End of variables declaration//GEN-END:variables
 }

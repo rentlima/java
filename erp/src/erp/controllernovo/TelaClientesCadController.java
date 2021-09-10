@@ -9,7 +9,9 @@ import erp.dao.ClientesDAO;
 import erp.jdbc.ConnectionFactory;
 import erp.objects.Clientes;
 import erp.telas.CadastroLogin;
-import erp.telas.TelaClientesCad;
+import erp.view.ViewCadastroCliente;
+import erp.view.ClienteCadJD;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.logging.Level;
@@ -18,15 +20,15 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Miguel
+ * @author Renato
  */
 public class TelaClientesCadController {
          
     
-    private TelaClientesCad view;
+    private ClienteCadJD view;
    
     
-    public TelaClientesCadController(TelaClientesCad view) {
+    public TelaClientesCadController(ClienteCadJD view) {
        this.view = view;
     }
    
@@ -63,15 +65,7 @@ public class TelaClientesCadController {
             
             clientesDao.adicionarCliente(cliente);
             
-         view.getTxtCadNome().setText(null);
-         view.getTxtCadBairro().setText(null);
-         view.getTxtCadRg().setText(null);
-         view.getTxtCadCep().setText(null);
-         view.getTxtCadTelefone().setText(null);
-         view.getTxtCadEndereco().setText(null);
-         view.getTxtCadCpf().setText(null);
-         view.getCbUf().setSelectedItem(null);
-         view.getTxtCadCidade().setText(null);
+         view.dispose();
          
                 }
          
@@ -82,9 +76,9 @@ public class TelaClientesCadController {
         } catch(Exception e){
             Logger.getLogger(CadastroLogin.class.getName()).log(Level.SEVERE , null , e);
         }
+      
                 
     }
-
     /*public void autenticar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

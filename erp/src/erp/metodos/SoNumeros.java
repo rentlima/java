@@ -11,7 +11,7 @@ import javax.swing.text.PlainDocument;
 
 /**
  *
- * @author Miguel
+ * @author Renato
  */
 public class SoNumeros extends PlainDocument {
 

@@ -36,14 +36,14 @@ public class ProdutosDAO {
     public void adicionarProduto(Produtos p){
         
         try {
-            String sql = "INSERT INTO PRODUTOS(nome_P,tipo,marca,modelo,quantidade,valor) values(?,?,?,?,?,?)";
+            String sql = "INSERT INTO PRODUTOS(nome,tipo,quantidade,custo_c,valor_v,fornecedor) values(?,?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1,p.getNome_P());
             st.setString(2, p.getTipo());
-            st.setString(3, p.getMarca());
-            st.setString(4, p.getModelo());
-            st.setInt(5, p.getQuantidade());
-            st.setDouble(6, p.getValor());
+            st.setInt(3, p.getQuantidade());
+            st.setFloat(4, p.getCusto_c());
+            st.setFloat(5, p.getValor_v());
+            st.setString(6, p.getCod_forn());
             st.executeUpdate();
            
             JOptionPane.showMessageDialog(null, "Produto Cadastrado");   
@@ -58,14 +58,14 @@ public class ProdutosDAO {
     
     public void alterarProduto(Produtos p){
        try{
-           String sql = "UPDATE produtos set nome_P=?,tipo=?,marca=?,modelo=?,quantidade=?,valor=? where codigo =?";
+           String sql = "UPDATE produtos set nome=?,tipo=?,quantidade=?,custo_c=?,valor_v=?,fornecedor=? where codigo =?";
            PreparedStatement st = con.prepareStatement(sql);
             st.setString(1,p.getNome_P());
             st.setString(2, p.getTipo());
-            st.setString(3, p.getMarca());
-            st.setString(4, p.getModelo());
-            st.setInt(5, p.getQuantidade());
-            st.setDouble(6, p.getValor());
+            st.setInt(3, p.getQuantidade());
+            st.setFloat(4, p.getCusto_c());
+            st.setFloat(5, p.getValor_v());
+            st.setString(6, p.getCod_forn());
             st.setInt(7, p.getCodigo());
             st.executeUpdate();
            
@@ -86,6 +86,8 @@ public class ProdutosDAO {
             String sql = "delete from produtos where codigo=?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setInt(1, p.getCodigo());
+                   
+            st.executeUpdate();
             
             JOptionPane.showMessageDialog(null, "Produto Excluido"); 
         }catch(Exception e){
@@ -110,12 +112,11 @@ public class ProdutosDAO {
              while (rs.next()){
                  Produtos produto = new Produtos();
                  produto.setCodigo(rs.getInt("codigo"));
-                 produto.setMarca(rs.getString("marca"));
-                 produto.setModelo(rs.getString("modelo"));
                  produto.setNome_P(rs.getString("nome_P"));
-                 produto.setQuantidade(rs.getInt("quantidade"));
                  produto.setTipo(rs.getString("tipo"));
-                 produto.setValor(rs.getDouble("valor"));
+                 produto.setQuantidade(rs.getInt("quantidade"));
+                 produto.setCusto_c(rs.getFloat("custo_c"));
+                 produto.setValor_v(rs.getFloat("valor_v"));
                  produtos.add(produto);
              
              
@@ -134,6 +135,6 @@ public class ProdutosDAO {
          
          
      }
-
+      
 
 } 

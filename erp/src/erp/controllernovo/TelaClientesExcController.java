@@ -9,24 +9,26 @@ import erp.dao.ClientesDAO;
 import erp.jdbc.ConnectionFactory;
 import erp.objects.Clientes;
 
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import erp.telas.TelaClientesExc;
+
+import erp.view.ClienteDelJD;
 
 /**
  *
- * @author Miguel
+ * @author Renato
  */
 public class TelaClientesExcController {
-    private TelaClientesExc view; 
+    private ClienteDelJD view; 
 
-    public TelaClientesExcController (TelaClientesExc view){
+    public TelaClientesExcController (ClienteDelJD view){
       this.view = view;  
     }
        
    public void excluirClientes() throws SQLException{
-   int id = Integer.parseInt(view.getTxtRgExc().getText());
+   int id = Integer.parseInt( view.getTblClientes().getValueAt(view.getTblClientes().getSelectedRow(), 0).toString());
     
     Clientes list = new Clientes(id);
     Connection conn = new ConnectionFactory().getConnection();

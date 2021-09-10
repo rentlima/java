@@ -7,7 +7,7 @@ package erp.objects;
 
 /**
  *
- * @author Miguel
+ * @author Renato
  */
 public class Clientes {
     
@@ -20,9 +20,9 @@ public class Clientes {
     private String cep;
     private String uf;
     private String bairro;
-    private String numero;
+    private String telefone;
 
-    public Clientes( String nome, String rg, String cpf, String endereco,  String cep,String cidade, String uf, String numero, String bairro) {
+    public Clientes( String nome, String rg, String cpf, String endereco,  String cep,String cidade, String uf, String telefone, String bairro) {
         this.nome = nome;
         this.rg = rg;
         this.cpf = cpf;
@@ -30,7 +30,7 @@ public class Clientes {
         this.cidade = cidade;
         this.cep = cep;
         this.uf = uf;
-        this.numero = numero;
+        this.telefone = telefone;
         this.bairro = bairro;
     }
 
@@ -48,8 +48,8 @@ public class Clientes {
         
     }
 
-    public Clientes(String rg) {
-        this.rg = rg;
+    public Clientes(String cpf) {
+        this.cpf = cpf;
     }
 
     
@@ -127,12 +127,12 @@ public class Clientes {
         this.bairro = bairro;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
  
     

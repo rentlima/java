@@ -8,7 +8,7 @@ package erp.controller;
 import erp.dao.UsuariosDAO;
 import erp.jdbc.ConnectionFactory;
 import erp.objects.Usuarios;
-import erp.telas.TelaClientesCad;
+
 import erp.telas.TelaLogin;
 import erp.telas.TelaPrincipalMDI;
 import java.sql.Connection;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Miguel
+ * @author Renato
  */
 public class TelaLoginController {
     
@@ -44,9 +44,9 @@ public class TelaLoginController {
             if (existe) {    // se existir , direcionar pro menu
                 view.dispose(); // metodo ira fechar a janela atual; no caso a TelaLogin
                 TelaPrincipalMDI telaDeMenu = new TelaPrincipalMDI();
-                telaDeMenu.setResizable(false);//metodo para deixar a janela fixa
+                //telaDeMenu.setResizable(false);//metodo para deixar a janela fixa
                 telaDeMenu.setVisible(true);
-                telaDeMenu.getLblUsuario().setText(login);
+           
                 
                 
             }else {  // mensagem para o usuario , que não existe seu login na db.
