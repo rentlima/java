@@ -10,6 +10,7 @@ import erp.view.ClienteDelJD;
 import erp.view.ClientePesqJD;
 import erp.view.ClienteUpdJD;
 import erp.view.ProdutosCadJD;
+import erp.view.VendaViewJD;
 //import erp.view.VendaJD;
 import erp.view.ViewCadastroCliente;
 import java.awt.Color;
@@ -425,8 +426,8 @@ public class TelaPrincipalMDI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
-//        VendaJD telavenda = new VendaJD(this, rootPaneCheckingEnabled);
-  //      telavenda.setVisible(true);
+       VendaViewJD telavenda = new VendaViewJD(this, rootPaneCheckingEnabled);
+       telavenda.setVisible(true);
     }//GEN-LAST:event_btnVendasActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed

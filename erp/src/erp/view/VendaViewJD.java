@@ -5,10 +5,21 @@
  */
 package erp.view;
 
+import erp.controllernovo.ControllerVenda;
 import erp.jdbc.ConnectionFactory;
+import erp.objects.ModeloTabela;
+import erp.objects.Venda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -16,13 +27,25 @@ import net.proteanit.sql.DbUtils;
  * @author Renato
  */
 public class VendaViewJD extends javax.swing.JDialog {
-
+    ConnectionFactory conn = new ConnectionFactory();
+    Venda modelovenda = new Venda();
+    int flag = 1,codVenda;
+    float preco_produto,total = 0;
+    
+    ControllerVenda controleVenda = new ControllerVenda();
+    
     /**
      * Creates new form VendaViewJD
      */
     public VendaViewJD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        Connection con = ConnectionFactory.getConnection();
+        
+
+        
+
+        
     }
 
     /**
@@ -125,6 +148,8 @@ public class VendaViewJD extends javax.swing.JDialog {
 
         jLabel6.setText("Valor Unitario");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
+
+        txtValorUnitario.setEditable(false);
         jPanel1.add(txtValorUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 140, 23));
 
         tabelaPesquisa = new javax.swing.JTable(){
@@ -173,6 +198,8 @@ public class VendaViewJD extends javax.swing.JDialog {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("VALOR TOTAL DA COMPRA :");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 539, 182, 40));
+
+        txtValorTotal.setEditable(false);
         jPanel1.add(txtValorTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 539, 140, 40));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -207,6 +234,11 @@ public class VendaViewJD extends javax.swing.JDialog {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 520, -1, -1));
 
         btnAdd.setText("ADD");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 80, 100));
 
         btnDeletar.setText("Deletar");
@@ -259,14 +291,34 @@ public class VendaViewJD extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCpfKeyReleased
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
+        try {
+            Connection con = ConnectionFactory.getConnection();
+            PreparedStatement st = con.prepareStatement("insert into tbvendas (subtotal) values (?) ");
+            st.setFloat(1, 0);
+            st.execute(); 
+            st.close();
+            
+            ResultSet rs = null ;
+            Statement stm = con.createStatement(rs.TYPE_SCROLL_SENSITIVE,rs.CONCUR_READ_ONLY);
+            rs = stm.executeQuery("select * from tbvendas");
+            rs.last();
+            codVenda = rs.getInt("id");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Erro : " +e);
+        }
        pesquisarProdutos();
         
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void tabelaPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPesquisaMouseClicked
          
-        preencherProduto();
+        try {
+            preencherProduto();
+            somaProdutos();
+        } catch (Exception e) {
+        }
+
         
         
     }//GEN-LAST:event_tabelaPesquisaMouseClicked
@@ -278,9 +330,85 @@ public class VendaViewJD extends javax.swing.JDialog {
     }//GEN-LAST:event_txtQuantidadeFocusGained
 
     private void txtQuantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeKeyReleased
-        Float valorTotal = Float.parseFloat(txtValorUnitario.getText())*Integer.parseInt(txtQuantidade.getText());
-        txtValorTotal.setText(String.valueOf(valorTotal));
+        try {
+            somaProdutos();
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaViewJD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtQuantidadeKeyReleased
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+   
+    
+        int idVenda,quantidade = 0 ;
+        Connection con = ConnectionFactory.getConnection();
+        ResultSet rs = null;
+        Statement stm;
+        try {
+            stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
+            rs = stm.executeQuery("select  * from produtos where nome = '"+txtNomeProduto.getText()+"'");
+            rs.first();
+            quantidade = rs.getInt("quantidade");
+            if(quantidade >= Integer.parseInt(txtQuantidade.getText())){
+                 
+                 modelovenda.setNomeProduto(txtNomeProduto.getText());
+                 modelovenda.setQtdItens(Integer.parseInt(txtQuantidade.getText()));
+                 modelovenda.setId(codVenda);
+                 try {
+            controleVenda.adicionar(modelovenda);
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaViewJD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                 
+                 
+                 
+                 try {
+            preencherItensVenda("select * from produtos inner join tbitemvenda on produtos.codigo = tbitemvenda.idProduto inner join tbvendas on tbvendas.id = tbitemvenda.idVenda where tbvendas.id = "+codVenda);
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaViewJD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Quantidade informada não está disponivel no estoque");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaViewJD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+        
+        try{ 
+            
+  
+        
+       // Statement stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
+        //rs = stm.executeQuery("SELECT * FROM produtos where nome =' "+txtNomeProduto.getText()+"'");
+        //rs.first();
+        
+        }catch(Exception e){
+            
+        }
+            
+ 
+        
+        try {
+            somaProdutos();
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaViewJD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        pesquisarProdutos();
+        
+       
+   
+    
+    
+    
+    
+        
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,6 +471,67 @@ public class VendaViewJD extends javax.swing.JDialog {
        }
    
    }
+   
+   public void somaProdutos() throws SQLException{
+      total = 0;
+      int qtd = 0;
+      float valor = 0;
+    try{  Connection con = ConnectionFactory.getConnection();
+      ResultSet rs = null;
+      Statement stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
+      rs = stm.executeQuery("select * from tbitemvenda inner join produtos on tbitemvenda.idProduto = produtos.codigo where idVenda ="+codVenda);
+     // rs.first();
+       while (rs.next()) {  
+           qtd  =rs.getInt("qtd_produto");
+           valor = rs.getFloat("valor_v");
+           total =total + rs.getFloat("valor_v")*rs.getInt("qtd_produto");
+       }
+     
+       txtValorTotal.setText(String.valueOf(total));
+    }catch (Exception e){
+        JOptionPane.showMessageDialog(null, "Erro : " +e);
+    }
+   }
+   
+   public void preencherItensVenda(String SQL) throws SQLException{
+      ArrayList dados = new ArrayList();
+      
+      String[] Colunas = new String[]{"Descrição","Quantidade","Valor total"};
+      Connection con = ConnectionFactory.getConnection();
+      ResultSet rs = null;
+      Statement stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
+      rs = stm.executeQuery(SQL);
+      rs.first();
+       do {      
+           float valorproduto = rs.getFloat("valor_v");
+           int qtdvendida = rs.getInt("qtd_produto");
+           dados.add(new Object[]{rs.getString("nome"),rs.getInt("qtd_produto"),valorproduto * qtdvendida});
+       } while (rs.next());
+      
+       ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+       tabelaItensVenda.setModel(modelo);
+       tabelaItensVenda.getColumnModel().getColumn(0).setPreferredWidth(400);
+       tabelaItensVenda.getColumnModel().getColumn(0).setResizable(false);
+       tabelaItensVenda.getColumnModel().getColumn(1).setPreferredWidth(160);
+       tabelaItensVenda.getColumnModel().getColumn(1).setResizable(false);
+       tabelaItensVenda.getColumnModel().getColumn(2).setPreferredWidth(308);
+       tabelaItensVenda.getColumnModel().getColumn(2).setResizable(false);
+       
+       tabelaItensVenda.getTableHeader().setReorderingAllowed(false);
+       tabelaItensVenda.setAutoResizeMode(tabelaItensVenda.AUTO_RESIZE_OFF);
+       tabelaItensVenda.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+       somaProdutos();
+      
+      
+      
+      
+      
+       
+       
+       
+       
+   }
+   
         public void preencherProduto(){
             
             txtNomeProduto.setText(tabelaPesquisa.getValueAt(tabelaPesquisa.getSelectedRow(), 1).toString());

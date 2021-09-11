@@ -59,7 +59,7 @@ public class ProdutosConsultaJD extends javax.swing.JDialog {
     private DefaultTableModel tablemodel;
     public Produtos produto;
     public TelaPrincipalMDI tela;
-    public VendaJD venda;
+
     
 
     public Produtos getProduto() {
