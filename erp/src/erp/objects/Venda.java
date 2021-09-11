@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Venda {
     
     private Integer id;
-    private Date data;
+    private String data;
     private Float subTotal;
     private String nomeCliente;
     private String nomeProduto;
@@ -36,15 +36,15 @@ public class Venda {
         this.nomeProduto = nomeProduto;
     }
 
-   
-
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
+
+
 
     public Float getSubTotal() {
         return subTotal;

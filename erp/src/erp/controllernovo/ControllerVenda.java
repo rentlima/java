@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 public class ControllerVenda {
     
     int codProd;
+    int codigo;
     ConnectionFactory conexao = new ConnectionFactory();
     public void adicionar(Venda obj) throws SQLException{
         Connection con = ConnectionFactory.getConnection();
@@ -64,7 +65,78 @@ public class ControllerVenda {
            
         }
         
+    public void finalizarVenda(Venda mod){
+        acharCliente(mod.getNomeCliente());
+        try {
+            Connection con = ConnectionFactory.getConnection();
+            ResultSet rs = null;
+            PreparedStatement st = con.prepareStatement("update tbvendas set data=?,subtotal=?,nomeCliente=?,cpfCliente=?,id_cliente=? where id= ?");
+            st.setString(1, mod.getData());
+            st.setFloat(2, mod.getSubTotal());
+            st.setString(3, mod.getNomeCliente());
+            st.setString(4, mod.getCpfCliente());
+            st.setInt(5, codigo );
+            st.setInt(6, mod.getId());
+            st.execute();
+            JOptionPane.showMessageDialog(null, "Venda Finalizada");
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Erro : " + e);
+        }
         
+    }
+        public void cancelarVenda() throws SQLException{
+
+            
+           
+            Connection con = ConnectionFactory.getConnection();
+            ResultSet rs = null;
+            PreparedStatement st;
+            Statement stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
+            rs =  stm.executeQuery("select * from tbvendas inner join tbitemvenda on tbvendas.id  = tbitemvenda.idVenda inner join produtos on tbitemvenda.idProduto = produtos.codigo where subtotal =0");
+            
+            try {
+                rs.first();
+                do {                    
+                    int qtdEstoque = rs.getInt("quantidade");
+                    int qtdVendida = rs.getInt("qtd_produto");
+                    int soma = qtdEstoque + qtdVendida;
+                    
+                    st = con.prepareStatement("update produtos set quantidade = ? where codigo = ? ");
+                    st.setInt(1, soma);
+                    st.setInt(2, rs.getInt("idProduto"));
+                    st.execute();
+                    
+                    st = con.prepareStatement("delete from tbitemvenda where idVenda = ?");
+                    st.setInt(1, rs.getInt("idVenda"));
+                    st.execute();
+                    
+                } while (rs.next());
+                st = con.prepareStatement("delete from tbvendas where subtotal = ?");
+                st.setInt(1, 0);
+                st.execute();
+                st.close();
+                con.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro : " + e);
+            }
+            
+        }
+        public void acharCliente(String nome){
+            
+           try {
+            Connection con = ConnectionFactory.getConnection();
+            ResultSet rs = null;
+            Statement stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
+            rs =  stm.executeQuery("select * from clientes where nome = '"+nome+"' ");
+            rs.first();
+            codigo = rs.getInt("id");
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Erro : " + e);
+        }
+            
+        }
         
      
     }

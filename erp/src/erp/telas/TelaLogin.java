@@ -104,7 +104,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(45, 139, 206));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 50, 199));
+        jLabel1.setForeground(new java.awt.Color(0, 88, 227));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -113,7 +113,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setPreferredSize(new java.awt.Dimension(171, 17));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 50, 199));
+        jLabel2.setForeground(new java.awt.Color(0, 88, 227));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Senha");
 
@@ -168,7 +168,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 50, 199));
+        jPanel1.setBackground(new java.awt.Color(0, 88, 227));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {

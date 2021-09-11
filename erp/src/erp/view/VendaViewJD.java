@@ -10,11 +10,14 @@ import erp.jdbc.ConnectionFactory;
 import erp.objects.ModeloTabela;
 import erp.objects.Venda;
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -41,9 +44,12 @@ public class VendaViewJD extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         Connection con = ConnectionFactory.getConnection();
-        
+        abrirVenda();
 
-        
+        // Pega data do sistema
+        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+        Date atual = new Date();
+        jftData.setText(data.format(atual));
 
         
     }
@@ -112,11 +118,13 @@ public class VendaViewJD extends javax.swing.JDialog {
         jLabel3.setText("Data : ");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, -1, -1));
 
+        jftData.setForeground(new java.awt.Color(0, 0, 0));
         try {
             jftData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jftData.setEnabled(false);
         jPanel1.add(jftData, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 120, 23));
 
         jLabel4.setText("Produto : ");
@@ -205,10 +213,20 @@ public class VendaViewJD extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton1.setForeground(new java.awt.Color(0, 153, 0));
-        jButton1.setText("Realizar Venda");
+        jButton1.setText("Finalizar Venda");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setForeground(new java.awt.Color(204, 0, 0));
         jButton2.setText("Cancelar venda");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -291,22 +309,7 @@ public class VendaViewJD extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCpfKeyReleased
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        try {
-            Connection con = ConnectionFactory.getConnection();
-            PreparedStatement st = con.prepareStatement("insert into tbvendas (subtotal) values (?) ");
-            st.setFloat(1, 0);
-            st.execute(); 
-            st.close();
-            
-            ResultSet rs = null ;
-            Statement stm = con.createStatement(rs.TYPE_SCROLL_SENSITIVE,rs.CONCUR_READ_ONLY);
-            rs = stm.executeQuery("select * from tbvendas");
-            rs.last();
-            codVenda = rs.getInt("id");
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Erro : " +e);
-        }
+        
        pesquisarProdutos();
         
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -410,6 +413,26 @@ public class VendaViewJD extends javax.swing.JDialog {
         
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        modelovenda.setId(codVenda);
+        modelovenda.setNomeCliente(txtNomeCliente.getText());
+        modelovenda.setData(jftData.getText());
+        modelovenda.setCpfCliente(txtCpf.getText());
+        modelovenda.setSubTotal(Float.parseFloat(txtValorTotal.getText()));
+        controleVenda.finalizarVenda(modelovenda);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            controleVenda.cancelarVenda();
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaViewJD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -471,7 +494,24 @@ public class VendaViewJD extends javax.swing.JDialog {
        }
    
    }
-   
+   public void abrirVenda(){
+       try {
+            Connection con = ConnectionFactory.getConnection();
+            PreparedStatement st = con.prepareStatement("insert into tbvendas (subtotal) values (?) ");
+            st.setFloat(1, 0);
+            st.execute(); 
+            st.close();
+            
+            ResultSet rs = null ;
+            Statement stm = con.createStatement(rs.TYPE_SCROLL_SENSITIVE,rs.CONCUR_READ_ONLY);
+            rs = stm.executeQuery("select * from tbvendas");
+            rs.last();
+            codVenda = rs.getInt("id");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Erro : " +e);
+        }
+   }
    public void somaProdutos() throws SQLException{
       total = 0;
       int qtd = 0;

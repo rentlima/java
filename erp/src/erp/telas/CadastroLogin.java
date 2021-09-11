@@ -128,6 +128,7 @@ public class CadastroLogin extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Repita a Senha");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -181,7 +182,7 @@ public class CadastroLogin extends javax.swing.JFrame {
             
         }
         
-        
+        this.dispose();
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
