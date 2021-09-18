@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,6 +28,7 @@ public class ConnectionFactory {
             stm = conn.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
             rs = stm.executeQuery(sql);
         }catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO : " +e );
             
         }
     }
@@ -40,6 +42,7 @@ public class ConnectionFactory {
             return DriverManager.getConnection("jdbc:mysql://localhost:3306/vendas?user=root&password=12345&serverTimezone=UTC & characterEncoding = UTF-8 & useUnicode = yes" );
         } catch (Exception e) {
             throw new RuntimeException(e);
+            
         }
 }
 }

@@ -6,7 +6,7 @@
 package erp.view;
 import erp.jdbc.ConnectionFactory;
 import erp.objects.Produtos;
-import erp.telas.TelaPrincipalMDI;
+import erp.telas.TelaPrincipal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,7 +58,7 @@ public class ProdutosConsultaJD extends javax.swing.JDialog {
     }
     private DefaultTableModel tablemodel;
     public Produtos produto;
-    public TelaPrincipalMDI tela;
+    public TelaPrincipal tela;
 
     
 

@@ -54,15 +54,13 @@ public class ClientePesqJD extends javax.swing.JDialog {
     private void pesquisarClientes () throws SQLException {
        String sql = "select id as Id, nome as Nome, rg as RG, cpf as CPF, endereco as Endereço, cep as CEP, "
                + "cidade as Cidade, uf as UF, telefone as Telefone, bairro as Bairro from clientes where nome like ?";
-      /*PreparedStatement st = con.prepareStatement(sql);
-       ResultSet rs = null; */
-            
+
        try {
             PreparedStatement st = con.prepareStatement(sql);
-       ResultSet rs = null;
-           st = con.prepareStatement(sql);
-           st.setString(1, txtNome.getText()+"%");
-           rs = st.executeQuery();
+            ResultSet rs = null;
+            st = con.prepareStatement(sql);
+            st.setString(1, txtNome.getText()+"%");
+            rs = st.executeQuery();
            
            tblClientes.setModel(DbUtils.resultSetToTableModel(rs));
        } catch (Exception e) {
@@ -182,9 +180,9 @@ public class ClientePesqJD extends javax.swing.JDialog {
 
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jPanel4.setBackground(new java.awt.Color(0, 50, 199));
+        jPanel4.setBackground(new java.awt.Color(0, 88, 227));
 
-        jButton2.setBackground(new java.awt.Color(0, 50, 199));
+        jButton2.setBackground(new java.awt.Color(0, 88, 227));
         jButton2.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("X");
@@ -277,7 +275,7 @@ public class ClientePesqJD extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void txtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyReleased
-        try {
+        try {  
             // TODO add your handling code here:
             pesquisarClientes();
         } catch (SQLException ex) {
@@ -291,7 +289,7 @@ public class ClientePesqJD extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2MouseEntered
 
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-        jButton2.setBackground(new Color(255,255,255));
+        jButton2.setBackground(new Color(0,88,227));
         jButton2.setForeground(new Color(0,0,0));
     }//GEN-LAST:event_jButton2MouseExited
 

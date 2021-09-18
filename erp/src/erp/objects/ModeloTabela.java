@@ -2,6 +2,7 @@
 package erp.objects;
 
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -19,6 +20,8 @@ public class ModeloTabela extends AbstractTableModel {
         setColunas(col);
         
     }
+    
+
     
     public ArrayList getLinhas(){
         return linhas;
@@ -49,6 +52,9 @@ public class ModeloTabela extends AbstractTableModel {
         return linha[numCol];
     }
     
+    public void removeRow(int row) {
+        linhas.remove(row);
+    }
     
 
 }

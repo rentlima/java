@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
 
@@ -109,11 +111,11 @@ public class VendaViewJD extends javax.swing.JDialog {
                 txtCpfKeyReleased(evt);
             }
         });
-        jPanel1.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 150, 23));
+        jPanel1.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 150, 30));
 
         jLabel2.setText("Nome :");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
-        jPanel1.add(txtNomeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 230, 23));
+        jPanel1.add(txtNomeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 230, 30));
 
         jLabel3.setText("Data : ");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, -1, -1));
@@ -125,11 +127,17 @@ public class VendaViewJD extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         jftData.setEnabled(false);
-        jPanel1.add(jftData, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 120, 23));
+        jPanel1.add(jftData, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 120, 30));
 
         jLabel4.setText("Produto : ");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
-        jPanel1.add(txtNomeProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 150, 23));
+
+        txtNomeProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNomeProdutoMouseClicked(evt);
+            }
+        });
+        jPanel1.add(txtNomeProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 150, 30));
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +145,7 @@ public class VendaViewJD extends javax.swing.JDialog {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, 24));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, 30));
 
         jLabel5.setText("Quantidade");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, -1, -1));
@@ -152,13 +160,13 @@ public class VendaViewJD extends javax.swing.JDialog {
                 txtQuantidadeKeyReleased(evt);
             }
         });
-        jPanel1.add(txtQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 120, 23));
+        jPanel1.add(txtQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 120, 30));
 
         jLabel6.setText("Valor Unitario");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
 
         txtValorUnitario.setEditable(false);
-        jPanel1.add(txtValorUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 140, 23));
+        jPanel1.add(txtValorUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 140, 30));
 
         tabelaPesquisa = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
@@ -212,6 +220,7 @@ public class VendaViewJD extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jButton1.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 153, 0));
         jButton1.setText("Finalizar Venda");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -220,6 +229,7 @@ public class VendaViewJD extends javax.swing.JDialog {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(204, 0, 0));
         jButton2.setText("Cancelar venda");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +261,14 @@ public class VendaViewJD extends javax.swing.JDialog {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 520, -1, -1));
 
+        btnAdd.setBackground(new java.awt.Color(0, 153, 0));
+        btnAdd.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setText("ADD");
+        btnAdd.setBorder(null);
+        btnAdd.setBorderPainted(false);
+        btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdd.setFocusPainted(false);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -259,7 +276,19 @@ public class VendaViewJD extends javax.swing.JDialog {
         });
         jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 80, 100));
 
+        btnDeletar.setBackground(new java.awt.Color(204, 0, 0));
+        btnDeletar.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        btnDeletar.setForeground(new java.awt.Color(255, 255, 255));
         btnDeletar.setText("Deletar");
+        btnDeletar.setBorder(null);
+        btnDeletar.setBorderPainted(false);
+        btnDeletar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDeletar.setFocusPainted(false);
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 80, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -268,7 +297,7 @@ public class VendaViewJD extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -347,9 +376,10 @@ public class VendaViewJD extends javax.swing.JDialog {
         Connection con = ConnectionFactory.getConnection();
         ResultSet rs = null;
         Statement stm;
+        
         try {
             stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
-            rs = stm.executeQuery("select  * from produtos where nome = '"+txtNomeProduto.getText()+"'");
+            rs = stm.executeQuery("select * from produtos where nome = '"+txtNomeProduto.getText()+"'");
             rs.first();
             quantidade = rs.getInt("quantidade");
             if(quantidade >= Integer.parseInt(txtQuantidade.getText())){
@@ -366,8 +396,9 @@ public class VendaViewJD extends javax.swing.JDialog {
                  
                  
                  try {
+
             preencherItensVenda("select * from produtos inner join tbitemvenda on produtos.codigo = tbitemvenda.idProduto inner join tbvendas on tbvendas.id = tbitemvenda.idVenda where tbvendas.id = "+codVenda);
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(VendaViewJD.class.getName()).log(Level.SEVERE, null, ex);
         }
                 
@@ -378,12 +409,9 @@ public class VendaViewJD extends javax.swing.JDialog {
         } catch (SQLException ex) {
             Logger.getLogger(VendaViewJD.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
-        
+ 
         try{ 
-            
-  
-        
+
        // Statement stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
         //rs = stm.executeQuery("SELECT * FROM produtos where nome =' "+txtNomeProduto.getText()+"'");
         //rs.first();
@@ -391,25 +419,15 @@ public class VendaViewJD extends javax.swing.JDialog {
         }catch(Exception e){
             
         }
-            
- 
         
         try {
             somaProdutos();
         } catch (SQLException ex) {
             Logger.getLogger(VendaViewJD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
         pesquisarProdutos();
         
-       
-   
-    
-    
-    
-    
         
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -421,6 +439,9 @@ public class VendaViewJD extends javax.swing.JDialog {
         modelovenda.setSubTotal(Float.parseFloat(txtValorTotal.getText()));
         controleVenda.finalizarVenda(modelovenda);
         this.dispose();
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -433,6 +454,89 @@ public class VendaViewJD extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void txtNomeProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNomeProdutoMouseClicked
+
+        
+        ProdutosConsultaJD pd = new ProdutosConsultaJD(this, rootPaneCheckingEnabled);
+        pd.setVisible(true);
+
+    }//GEN-LAST:event_txtNomeProdutoMouseClicked
+
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
+        
+        if (tabelaItensVenda.getSelectionModel().isSelectionEmpty()){
+            JOptionPane.showMessageDialog(null, "Selecione um item da tabela Itens da venda para remover .");
+        }else {
+        try {
+            int idvenda ;
+            Connection con = ConnectionFactory.getConnection();
+            ResultSet rs = null ;
+            Statement stm = con.createStatement(rs.TYPE_SCROLL_SENSITIVE,rs.CONCUR_READ_ONLY);
+            rs = stm.executeQuery("select * from produtos inner join tbitemvenda on produtos.codigo = tbitemvenda.idProduto inner join tbvendas on tbvendas.id = tbitemvenda.idVenda where tbvendas.id = "+codVenda);
+            rs.last();
+            idvenda = rs.getInt("idVenda");
+            JOptionPane.showMessageDialog(null,"id encontrado");
+            
+
+            controleVenda.attProduto();
+            
+           
+           
+           
+
+            String sqll = "delete from tbitemvenda where idVenda = ? ";
+            PreparedStatement st = con.prepareStatement(sqll);
+            st.setInt(1, idvenda);
+            st.execute();
+            st.close();
+            JOptionPane.showMessageDialog(null,"excluido");
+            
+            
+            
+           
+            
+            
+        }catch(Exception e ){
+                JOptionPane.showMessageDialog(null,"ERRO : " + e);
+            }
+      
+            pesquisarProdutos();
+            ArrayList dados = new ArrayList();
+      
+            String[] Colunas = new String[]{"Descrição","Quantidade","Valor total"};
+            
+            
+            ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+            JTable table = new JTable(modelo);
+            tabelaItensVenda.setModel(modelo);
+            tabelaItensVenda.getColumnModel().getColumn(0).setPreferredWidth(400);
+            tabelaItensVenda.getColumnModel().getColumn(0).setResizable(false);
+            tabelaItensVenda.getColumnModel().getColumn(1).setPreferredWidth(160);
+            tabelaItensVenda.getColumnModel().getColumn(1).setResizable(false);
+            tabelaItensVenda.getColumnModel().getColumn(2).setPreferredWidth(308);
+            tabelaItensVenda.getColumnModel().getColumn(2).setResizable(false);
+
+            tabelaItensVenda.getTableHeader().setReorderingAllowed(false);
+            tabelaItensVenda.setAutoResizeMode(tabelaItensVenda.AUTO_RESIZE_OFF);
+            tabelaItensVenda.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            
+            modelo.removeRow((int)tabelaItensVenda.getValueAt(tabelaItensVenda.getSelectedRow(), 1));
+            
+            try {
+                preencherItensVenda("select * from produtos inner join tbitemvenda on produtos.codigo = tbitemvenda.idProduto inner join tbvendas on tbvendas.id = tbitemvenda.idVenda where tbvendas.id = "+codVenda);
+            } catch (Exception e) {
+            }
+           
+           
+           
+            
+            
+        }
+    }//GEN-LAST:event_btnDeletarActionPerformed
+
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -511,7 +615,11 @@ public class VendaViewJD extends javax.swing.JDialog {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Erro : " +e);
         }
+       
+       
    }
+   
+   
    public void somaProdutos() throws SQLException{
       total = 0;
       int qtd = 0;
@@ -549,6 +657,38 @@ public class VendaViewJD extends javax.swing.JDialog {
        } while (rs.next());
       
        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+       JTable table = new JTable(modelo);
+       tabelaItensVenda.setModel(modelo);
+       tabelaItensVenda.getColumnModel().getColumn(0).setPreferredWidth(400);
+       tabelaItensVenda.getColumnModel().getColumn(0).setResizable(false);
+       tabelaItensVenda.getColumnModel().getColumn(1).setPreferredWidth(160);
+       tabelaItensVenda.getColumnModel().getColumn(1).setResizable(false);
+       tabelaItensVenda.getColumnModel().getColumn(2).setPreferredWidth(308);
+       tabelaItensVenda.getColumnModel().getColumn(2).setResizable(false);
+       
+       tabelaItensVenda.getTableHeader().setReorderingAllowed(false);
+       tabelaItensVenda.setAutoResizeMode(tabelaItensVenda.AUTO_RESIZE_OFF);
+       tabelaItensVenda.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+       somaProdutos();
+       
+   }
+   
+   public void excluirItensVenda(String SQL) throws SQLException{
+      ArrayList dados = new ArrayList();
+      
+      String[] Colunas = new String[]{"Descrição","Quantidade","Valor total"};
+      Connection con = ConnectionFactory.getConnection();
+      ResultSet rs = null;
+      Statement stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
+      rs = stm.executeQuery(SQL);
+      rs.first();
+       do {      
+           float valorproduto = rs.getFloat("valor_v");
+           int qtdvendida = rs.getInt("qtd_produto");
+           dados.add(new Object[]{rs.getString("nome"),rs.getInt("qtd_produto"),valorproduto * qtdvendida});
+       } while (rs.next());
+      
+       ModeloTabela modelo = new ModeloTabela(dados, Colunas);
        tabelaItensVenda.setModel(modelo);
        tabelaItensVenda.getColumnModel().getColumn(0).setPreferredWidth(400);
        tabelaItensVenda.getColumnModel().getColumn(0).setResizable(false);
@@ -562,6 +702,7 @@ public class VendaViewJD extends javax.swing.JDialog {
        tabelaItensVenda.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
        somaProdutos();
       
+       tabelaItensVenda.remove(tabelaItensVenda.getSelectedRow());
       
       
       
@@ -584,8 +725,47 @@ public class VendaViewJD extends javax.swing.JDialog {
 
 
 
-// METODOS 
+// METODOS FIM
         
+    public JFormattedTextField getTxtCpf() {
+        return txtCpf;
+    }
+
+    public void setTxtCpf(JFormattedTextField txtCpf) {
+        this.txtCpf = txtCpf;
+    }
+
+    public JTextField getTxtNomeCliente() {
+        return txtNomeCliente;
+    }
+
+    public void setTxtNomeCliente(JTextField txtNomeCliente) {
+        this.txtNomeCliente = txtNomeCliente;
+    }
+
+    public JTextField getTxtNomeProduto() {
+        return txtNomeProduto;
+    }
+
+    public void setTxtNomeProduto(JTextField txtNomeProduto) {
+        this.txtNomeProduto = txtNomeProduto;
+    }
+
+    public JTextField getTxtValorTotal() {
+        return txtValorTotal;
+    }
+
+    public void setTxtValorTotal(JTextField txtValorTotal) {
+        this.txtValorTotal = txtValorTotal;
+    }
+
+    public JTextField getTxtValorUnitario() {
+        return txtValorUnitario;
+    }
+
+    public void setTxtValorUnitario(JTextField txtValorUnitario) {
+        this.txtValorUnitario = txtValorUnitario;
+    }
         
         
         

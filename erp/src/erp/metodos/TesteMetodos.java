@@ -23,11 +23,15 @@ public class TesteMetodos {
     public static void main (String[] args) throws SQLException{
         
 
-      Produtos p = new Produtos();
-      p.setCodigo(4);
-      
-      ProdutosDAO dao = new ProdutosDAO();
-      dao.deletarProduto(p);
+Clientes c = new Clientes();
+
+c.setNome("a");
+c.setEndereco("b");
+c.setCpf("123");
+c.setTelefone("50403020");
+
+ClientesDAO dao = new ClientesDAO();
+dao.adicionarCliente(c);
         
             }
 }

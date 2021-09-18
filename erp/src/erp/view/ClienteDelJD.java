@@ -256,7 +256,7 @@ public class ClienteDelJD extends javax.swing.JDialog {
              JOptionPane.showMessageDialog(null, "Selecione o cliente para excluir.");
          }else {
         TelaClientesExcController tela = new TelaClientesExcController(this);
-        int confirm = JOptionPane.showConfirmDialog(null , "Você tem certeza que deseja excluir?","Confirma",JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(null , "Deseja realmente excluir?","Confirmação",JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION){
              try {
             tela.excluirClientes();

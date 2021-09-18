@@ -13,6 +13,7 @@ public class Fornecedor {
     
     String nome_f;
     int id_fornecedor;
+    
 
     public Fornecedor(String nome_f, int id_fornecedor) {
         this.nome_f = nome_f;

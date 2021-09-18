@@ -7,7 +7,7 @@ package erp.view;
 
 import erp.controllernovo.TelaClientesCadController;
 
-import erp.telas.TelaPrincipalMDI;
+import erp.telas.TelaPrincipal;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;

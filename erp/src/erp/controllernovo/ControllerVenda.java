@@ -33,7 +33,7 @@ public class ControllerVenda {
             pst.setInt(3, obj.getQtdItens());
             pst.execute();
 
-           // Baixa de estoque  
+            // Baixa de estoque  
             
             int quant = 0,resultado =0;
             ResultSet rs = null;
@@ -83,6 +83,36 @@ public class ControllerVenda {
             
             JOptionPane.showMessageDialog(null, "Erro : " + e);
         }
+        
+    }
+    
+    public void attProduto() throws SQLException{
+        
+            Connection con = ConnectionFactory.getConnection();
+            ResultSet rs = null;
+            PreparedStatement st;
+            Statement stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
+            rs =  stm.executeQuery("select * from tbvendas inner join tbitemvenda on tbvendas.id  = tbitemvenda.idVenda inner join produtos on tbitemvenda.idProduto = produtos.codigo where subtotal =0");
+            
+            try {
+                rs.first();
+                do {                    
+                    int qtdEstoque = rs.getInt("quantidade");
+                    int qtdVendida = rs.getInt("qtd_produto");
+                    int soma = qtdEstoque + qtdVendida;
+                    
+                    st = con.prepareStatement("update produtos set quantidade = ? where codigo = ? ");
+                    st.setInt(1, soma);
+                    st.setInt(2, rs.getInt("idProduto"));
+                    st.execute();
+                    
+                    
+                } while (rs.next());
+                
+                
+                } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro : " + e);
+            }
         
     }
         public void cancelarVenda() throws SQLException{

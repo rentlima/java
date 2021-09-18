@@ -10,7 +10,7 @@ import erp.jdbc.ConnectionFactory;
 import erp.objects.Usuarios;
 
 import erp.telas.TelaLogin;
-import erp.telas.TelaPrincipalMDI;
+import erp.telas.TelaPrincipal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -43,7 +43,7 @@ public class TelaLoginController {
         boolean existe = usuariosDao.existeNaDb(usuarioAutenticar);
             if (existe) {    // se existir , direcionar pro menu
                 view.dispose(); // metodo ira fechar a janela atual; no caso a TelaLogin
-                TelaPrincipalMDI telaDeMenu = new TelaPrincipalMDI();
+                TelaPrincipal telaDeMenu = new TelaPrincipal();
                 //telaDeMenu.setResizable(false);//metodo para deixar a janela fixa
                 telaDeMenu.setVisible(true);
            

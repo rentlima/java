@@ -88,7 +88,7 @@ public class CadastroLogin extends javax.swing.JFrame {
         jPasswordFieldSenha = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtConfirmaSenha = new javax.swing.JTextField();
+        txtConfirmaSenha = new javax.swing.JPasswordField();
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/erp/telas/imagens/mqdefault.jpg"))); // NOI18N
 
@@ -160,9 +160,9 @@ public class CadastroLogin extends javax.swing.JFrame {
                 .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(txtConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
                 .addComponent(jButton1)
                 .addGap(12, 12, 12))
         );
@@ -254,6 +254,6 @@ public class CadastroLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JTextField jTextFieldUsuario;
-    private javax.swing.JTextField txtConfirmaSenha;
+    private javax.swing.JPasswordField txtConfirmaSenha;
     // End of variables declaration//GEN-END:variables
 }
