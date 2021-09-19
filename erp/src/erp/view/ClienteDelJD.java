@@ -7,6 +7,7 @@ package erp.view;
 import erp.controllernovo.TelaClientesExcController;
 import erp.jdbc.ConnectionFactory;
 import java.awt.Color;
+import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +26,7 @@ import net.proteanit.sql.DbUtils;
  */
 public class ClienteDelJD extends javax.swing.JDialog {
  Connection con = null;
+ Font font = new Font("Yu Gothic UI Semibold",Font.PLAIN,12);
  
  public ClienteDelJD(Connection conexao) {
      this.con = conexao;
@@ -37,8 +39,12 @@ public class ClienteDelJD extends javax.swing.JDialog {
         initComponents();
         con = ConnectionFactory.getConnection();
         pesquisarClientes();
+        tblClientes.getTableHeader().setFont(font);
     }
 
+   
+    
+    
     private void pesquisarClientes () throws SQLException {
        String sql = "select id as Id, nome as Nome, rg as RG, cpf as CPF, endereco as Endereço, cep as CEP, "
                + "cidade as Cidade, uf as UF, telefone as Telefone, bairro as Bairro from clientes where nome like ?";
@@ -67,6 +73,8 @@ public class ClienteDelJD extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jpCabecalho6 = new javax.swing.JPanel();
+        lbCabecalho6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtNome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -79,9 +87,41 @@ public class ClienteDelJD extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Excluir cliente");
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jpCabecalho6.setBackground(new java.awt.Color(0, 88, 227));
+        jpCabecalho6.setForeground(new java.awt.Color(255, 255, 255));
+        jpCabecalho6.setMaximumSize(new java.awt.Dimension(853, 29));
+        jpCabecalho6.setMinimumSize(new java.awt.Dimension(853, 29));
+
+        lbCabecalho6.setBackground(new java.awt.Color(0, 88, 227));
+        lbCabecalho6.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 36)); // NOI18N
+        lbCabecalho6.setForeground(new java.awt.Color(255, 255, 255));
+        lbCabecalho6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbCabecalho6.setText("Lista de Clientes");
+        lbCabecalho6.setMaximumSize(new java.awt.Dimension(853, 29));
+        lbCabecalho6.setMinimumSize(new java.awt.Dimension(853, 29));
+        lbCabecalho6.setPreferredSize(new java.awt.Dimension(853, 29));
+
+        javax.swing.GroupLayout jpCabecalho6Layout = new javax.swing.GroupLayout(jpCabecalho6);
+        jpCabecalho6.setLayout(jpCabecalho6Layout);
+        jpCabecalho6Layout.setHorizontalGroup(
+            jpCabecalho6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpCabecalho6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbCabecalho6, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+        jpCabecalho6Layout.setVerticalGroup(
+            jpCabecalho6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbCabecalho6, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jpCabecalho6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, -1, 820, 40));
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
+        txtNome.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);
@@ -121,7 +161,9 @@ public class ClienteDelJD extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Selecione o Cliente e clique em Excluir", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 74, -1, -1));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Selecione o Cliente e clique em Excluir", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Yu Gothic UI Semibold", 0, 14), new java.awt.Color(0, 0, 0))); // NOI18N
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(453, 355));
 
@@ -130,6 +172,7 @@ public class ClienteDelJD extends javax.swing.JDialog {
                 return false;
             }
         };
+        tblClientes.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -157,8 +200,10 @@ public class ClienteDelJD extends javax.swing.JDialog {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 216, 760, -1));
+
         jButton1.setBackground(new java.awt.Color(187, 187, 250));
-        jButton1.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Excluir");
         jButton1.setToolTipText("Excluir Cliente");
@@ -178,9 +223,10 @@ public class ClienteDelJD extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 565, 200, -1));
 
         jButton2.setBackground(new java.awt.Color(187, 187, 250));
-        jButton2.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(204, 0, 0));
         jButton2.setText("Voltar ao Menu");
         jButton2.setToolTipText("Voltar ao Menu Principal");
@@ -200,38 +246,7 @@ public class ClienteDelJD extends javax.swing.JDialog {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 565, 200, -1));
 
         setSize(new java.awt.Dimension(816, 639));
         setLocationRelativeTo(null);
@@ -383,6 +398,8 @@ public class ClienteDelJD extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel jpCabecalho6;
+    private javax.swing.JLabel lbCabecalho6;
     private javax.swing.JTable tblClientes;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables

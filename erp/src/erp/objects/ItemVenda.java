@@ -1,13 +1,14 @@
 package erp.objects;
 
 /*
-*@author – DeboraGomes
+*@author – Renato Lima
 */
 public class ItemVenda extends Produtos{
     
     private Integer idItem;
     private Integer idVenda;
     private Float valorTotal;
+    private int qtd_itens;
 
     public Integer getIdItem() {
         return idItem;
@@ -31,5 +32,19 @@ public class ItemVenda extends Produtos{
 
     public void setValorTotal(Float valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    /**
+     * @return the qtd_itens
+     */
+    public int getQtd_itens() {
+        return qtd_itens;
+    }
+
+    /**
+     * @param qtd_itens the qtd_itens to set
+     */
+    public void setQtd_itens(int qtd_itens) {
+        this.qtd_itens = qtd_itens;
     }
 }

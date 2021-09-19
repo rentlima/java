@@ -47,7 +47,7 @@ public class ControllerVenda {
             pst.setInt(1, resultado);
             pst.setString(2, obj.getNomeProduto());
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Produto adicionado");
+            //JOptionPane.showMessageDialog(null, "Produto adicionado");
             
         } catch (Exception ex) {
            JOptionPane.showMessageDialog(null, "Erro : " + ex);
@@ -152,6 +152,8 @@ public class ControllerVenda {
             }
             
         }
+        
+        
         public void acharCliente(String nome){
             
            try {
@@ -168,6 +170,23 @@ public class ControllerVenda {
             
         }
         
+        public void excluirVenda(int codVenda){
+            
+            try {
+                Connection con = ConnectionFactory.getConnection();
+            String sql = "delete from tbvendas where id=?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, codVenda);
+                   
+            st.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Venda Excluida"); 
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Erro : " +e);
+        }
+            
+            
+        }
      
     }
 

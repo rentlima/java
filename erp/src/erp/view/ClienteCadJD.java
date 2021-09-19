@@ -41,7 +41,6 @@ public class ClienteCadJD extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtCadNome = new javax.swing.JTextField();
@@ -66,33 +65,31 @@ public class ClienteCadJD extends javax.swing.JDialog {
         jLabel12 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jpCabecalho6 = new javax.swing.JPanel();
+        lbCabecalho6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Cliente");
         setResizable(false);
 
-        jLabel10.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 48)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Novo Cliente");
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Dados Pessoais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Dados Pessoais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Yu Gothic UI Semibold", 1, 14), new java.awt.Color(0, 0, 0))); // NOI18N
         jPanel3.setMinimumSize(new java.awt.Dimension(600, 140));
         jPanel3.setPreferredSize(new java.awt.Dimension(600, 140));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(45, 139, 206));
-        jLabel1.setFont(new java.awt.Font("Myanmar Text", 1, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nome:");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, 24));
 
+        txtCadNome.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         txtCadNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCadNomeKeyPressed(evt);
             }
         });
-        jPanel3.add(txtCadNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 250, 35));
+        jPanel3.add(txtCadNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 250, 35));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/novas/user (96).png"))); // NOI18N
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, 120));
@@ -102,6 +99,7 @@ public class ClienteCadJD extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCadCpf.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         txtCadCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCadCpfActionPerformed(evt);
@@ -112,14 +110,15 @@ public class ClienteCadJD extends javax.swing.JDialog {
                 txtCadCpfKeyPressed(evt);
             }
         });
-        jPanel3.add(txtCadCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, 250, 35));
+        jPanel3.add(txtCadCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 250, 35));
 
         jLabel2.setBackground(new java.awt.Color(45, 139, 206));
-        jLabel2.setFont(new java.awt.Font("Myanmar Text", 1, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("RG:");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, 24));
 
+        txtCadRg.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         txtCadRg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCadRgActionPerformed(evt);
@@ -130,14 +129,15 @@ public class ClienteCadJD extends javax.swing.JDialog {
                 txtCadRgKeyPressed(evt);
             }
         });
-        jPanel3.add(txtCadRg, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 250, 35));
+        jPanel3.add(txtCadRg, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 250, 35));
 
         jLabel9.setBackground(new java.awt.Color(45, 139, 206));
-        jLabel9.setFont(new java.awt.Font("Myanmar Text", 1, 16)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Telefone:");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, 24));
 
+        txtCadTelefone.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         txtCadTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCadTelefoneActionPerformed(evt);
@@ -148,19 +148,20 @@ public class ClienteCadJD extends javax.swing.JDialog {
                 txtCadTelefoneKeyPressed(evt);
             }
         });
-        jPanel3.add(txtCadTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 250, 35));
+        jPanel3.add(txtCadTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 250, 35));
 
         jLabel3.setBackground(new java.awt.Color(45, 139, 206));
-        jLabel3.setFont(new java.awt.Font("Myanmar Text", 1, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("CPF:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, -1, 24));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Dados Pessoais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Yu Gothic UI Semibold", 1, 14), new java.awt.Color(0, 0, 0))); // NOI18N
         jPanel2.setMinimumSize(new java.awt.Dimension(600, 154));
         jPanel2.setPreferredSize(new java.awt.Dimension(600, 154));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtCadEndereco.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         txtCadEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCadEnderecoActionPerformed(evt);
@@ -173,11 +174,12 @@ public class ClienteCadJD extends javax.swing.JDialog {
         });
         jPanel2.add(txtCadEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 250, 35));
 
-        jLabel11.setFont(new java.awt.Font("Myanmar Text", 1, 16)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Bairro:");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, 24));
 
+        txtCadCidade.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         txtCadCidade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCadCidadeKeyPressed(evt);
@@ -185,7 +187,7 @@ public class ClienteCadJD extends javax.swing.JDialog {
         });
         jPanel2.add(txtCadCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 250, 35));
 
-        jLabel4.setFont(new java.awt.Font("Myanmar Text", 1, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("CEP:");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, 24));
@@ -195,6 +197,7 @@ public class ClienteCadJD extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCadCep.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         txtCadCep.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCadCepKeyPressed(evt);
@@ -202,6 +205,7 @@ public class ClienteCadJD extends javax.swing.JDialog {
         });
         jPanel2.add(txtCadCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 250, 35));
 
+        txtCadBairro.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         txtCadBairro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCadBairroActionPerformed(evt);
@@ -214,21 +218,22 @@ public class ClienteCadJD extends javax.swing.JDialog {
         });
         jPanel2.add(txtCadBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 250, 35));
 
-        jLabel6.setFont(new java.awt.Font("Myanmar Text", 1, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Endereço:");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, 24));
 
-        jLabel5.setFont(new java.awt.Font("Myanmar Text", 1, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Cidade:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, 24));
 
-        jLabel7.setFont(new java.awt.Font("Myanmar Text", 1, 16)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("UF:");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 27, -1));
 
+        cbUf.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 12)); // NOI18N
         cbUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         cbUf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,7 +251,7 @@ public class ClienteCadJD extends javax.swing.JDialog {
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(187, 187, 250));
-        jButton2.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(204, 0, 0));
         jButton2.setText("Voltar ao Menu");
         jButton2.setBorderPainted(false);
@@ -267,7 +272,7 @@ public class ClienteCadJD extends javax.swing.JDialog {
         });
 
         jButton1.setBackground(new java.awt.Color(187, 187, 250));
-        jButton1.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 153, 0));
         jButton1.setText("Adicionar Cliente");
         jButton1.setToolTipText("Adicionar");
@@ -293,13 +298,37 @@ public class ClienteCadJD extends javax.swing.JDialog {
             }
         });
 
+        jpCabecalho6.setBackground(new java.awt.Color(0, 88, 227));
+        jpCabecalho6.setForeground(new java.awt.Color(255, 255, 255));
+        jpCabecalho6.setMaximumSize(new java.awt.Dimension(853, 29));
+        jpCabecalho6.setMinimumSize(new java.awt.Dimension(853, 29));
+
+        lbCabecalho6.setBackground(new java.awt.Color(0, 88, 227));
+        lbCabecalho6.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 36)); // NOI18N
+        lbCabecalho6.setForeground(new java.awt.Color(255, 255, 255));
+        lbCabecalho6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbCabecalho6.setText("Cadastro de Clientes");
+        lbCabecalho6.setMaximumSize(new java.awt.Dimension(853, 29));
+        lbCabecalho6.setMinimumSize(new java.awt.Dimension(853, 29));
+        lbCabecalho6.setPreferredSize(new java.awt.Dimension(853, 29));
+
+        javax.swing.GroupLayout jpCabecalho6Layout = new javax.swing.GroupLayout(jpCabecalho6);
+        jpCabecalho6.setLayout(jpCabecalho6Layout);
+        jpCabecalho6Layout.setHorizontalGroup(
+            jpCabecalho6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpCabecalho6Layout.createSequentialGroup()
+                .addComponent(lbCabecalho6, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jpCabecalho6Layout.setVerticalGroup(
+            jpCabecalho6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbCabecalho6, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 816, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -310,17 +339,15 @@ public class ClienteCadJD extends javax.swing.JDialog {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
+            .addComponent(jpCabecalho6, javax.swing.GroupLayout.PREFERRED_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel10))
+                .addComponent(jpCabecalho6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
@@ -571,7 +598,6 @@ public void enter(java.awt.event.KeyEvent evt){
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -584,6 +610,8 @@ public void enter(java.awt.event.KeyEvent evt){
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jpCabecalho6;
+    private javax.swing.JLabel lbCabecalho6;
     private javax.swing.JTextField txtCadBairro;
     private javax.swing.JFormattedTextField txtCadCep;
     private javax.swing.JTextField txtCadCidade;

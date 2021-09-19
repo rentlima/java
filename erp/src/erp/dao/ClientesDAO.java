@@ -230,5 +230,71 @@ public class ClientesDAO {
   }
         */
     
+    
+    public List<Clientes>buscarClientesPeloNome(String nome){
+        
+         try {
+             List<Clientes> clientesLista = new ArrayList<>();
+             String sql = "select * from clientes like nome";
+             PreparedStatement st = con.prepareStatement(sql);
+             st.setString(1,nome);
+             ResultSet rs = st.executeQuery();
+             while (rs.next()){
+                 Clientes obj = new Clientes();
+                 obj.setId(rs.getInt("id"));
+                 obj.setNome(rs.getString("nome"));
+                 obj.setRg(rs.getString("rg"));
+                 obj.setCpf(rs.getString("cpf"));
+                 obj.setEndereco(rs.getString("endereco"));
+                 obj.setCep(rs.getString("cep"));
+                 obj.setCidade(rs.getString("cidade"));
+                 obj.setUf(rs.getString("uf"));
+                 obj.setTelefone(rs.getString("telefone"));
+                 obj.setBairro(rs.getString("bairro"));
+                 
+                 
+                 clientesLista.add(obj);
+                 
+             }
+             return clientesLista;
+
+    }catch(Exception e){
+        JOptionPane.showMessageDialog(null,"ERRO : " + e);
+    }
+         return null;
+    }
+    
+    public List<Clientes>buscarClientesPeloCpf(String cpf){
+        
+         try {
+             List<Clientes> clientesLista = new ArrayList<>();
+             String sql = "select * from clientes like cpf";
+             PreparedStatement st = con.prepareStatement(sql);
+             st.setString(1,cpf);
+             ResultSet rs = st.executeQuery();
+             while (rs.next()){
+                 Clientes obj = new Clientes();
+                 obj.setId(rs.getInt("id"));
+                 obj.setNome(rs.getString("nome"));
+                 obj.setRg(rs.getString("rg"));
+                 obj.setCpf(rs.getString("cpf"));
+                 obj.setEndereco(rs.getString("endereco"));
+                 obj.setCep(rs.getString("cep"));
+                 obj.setCidade(rs.getString("cidade"));
+                 obj.setUf(rs.getString("uf"));
+                 obj.setTelefone(rs.getString("telefone"));
+                 obj.setBairro(rs.getString("bairro"));
+                 
+                 
+                 clientesLista.add(obj);
+                 
+             }
+             return clientesLista;
+
+    }catch(Exception e){
+        JOptionPane.showMessageDialog(null,"ERRO : " + e);
+    }
+         return null;
+    }
 }
 

@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -112,7 +113,7 @@ public class ProdutosDAO {
              while (rs.next()){
                  Produtos produto = new Produtos();
                  produto.setCodigo(rs.getInt("codigo"));
-                 produto.setNome_P(rs.getString("nome_P"));
+                 produto.setNome_P(rs.getString("nome"));
                  produto.setTipo(rs.getString("tipo"));
                  produto.setQuantidade(rs.getInt("quantidade"));
                  produto.setCusto_c(rs.getFloat("custo_c"));
@@ -136,5 +137,40 @@ public class ProdutosDAO {
          
      }
       
+     public boolean alterarEstoque(ArrayList<Produtos> lista){
+         try {
+             for (int i = 0; i < lista.size(); i++) {
+
+             String sql = "UPDATE produtos set quantidade ='"+lista.get(i).getQuantidade()+"' where nome = '"+lista.get(i).getNome_P()+"'";
+             PreparedStatement st = con.prepareStatement(sql) ;
+             
+            
+             
+             }
+             return true;
+             } catch (Exception e) {
+             return false;
+             }
+         
+     }
+     
+     public void baixaEstoque(int id , int qtd_nova){
+         try {
+                Connection con = ConnectionFactory.getConnection();
+                String sql = "UPDATE produtos set quantidade = ? where codigo = ? ";
+                PreparedStatement st = con .prepareStatement(sql);  
+                st.setInt(1, qtd_nova);
+                st.setInt(2, id);
+                st.execute();
+                st.close();
+                
+         } catch (Exception e) {
+         }
+      
+         
+         
+         
+         
+     }
 
 } 

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package erp.view;
+import erp.dao.ProdutosDAO;
 import erp.jdbc.ConnectionFactory;
 import erp.objects.Produtos;
 import erp.telas.TelaPrincipal;
@@ -19,6 +20,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -38,27 +40,20 @@ public class ProdutosConsultaJD extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         con = ConnectionFactory.getConnection();
-        try {
-            listar();
-        } catch(Exception e){
-            
-        }
+        
     }
 
     ProdutosConsultaJD(java.awt.Dialog parent , boolean modal) {
         super(parent , modal);
         initComponents();
         con = ConnectionFactory.getConnection();
-        try {
-            listar();
-        } catch(Exception e){
-            
-        }
+        
         
     }
     private DefaultTableModel tablemodel;
     public Produtos produto;
     public TelaPrincipal tela;
+    public VendaViewJD venda;
 
     
 
@@ -150,36 +145,44 @@ public class ProdutosConsultaJD extends javax.swing.JDialog {
         produtoTabela.setForeground(new java.awt.Color(0, 0, 0));
         produtoTabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-
+                "ID", "Nome", "Tipo", "Quantidade", "Valor Unitario"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         produtoTabela.setMinimumSize(new java.awt.Dimension(105, 400));
         produtoTabela.setPreferredSize(new java.awt.Dimension(225, 400));
         produtoTabela.getTableHeader().setReorderingAllowed(false);
@@ -252,12 +255,36 @@ public class ProdutosConsultaJD extends javax.swing.JDialog {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         try {
-            listar();
+            listarProdutos();
         } catch (SQLException ex) {
             Logger.getLogger(ProdutosConsultaJD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
+    
+    public void listarProdutos() throws SQLException{
+        try {
+            ProdutosDAO obj = new ProdutosDAO();
+            DefaultTableModel model = (DefaultTableModel) produtoTabela.getModel();
+            model.setNumRows(0);
+            ArrayList<Produtos> lista = (ArrayList<Produtos>) obj.listar();
+        
+            for (int num = 0 ; num < lista.size() ; num ++){
+                model.addRow(new Object[]{
+                
+                lista.get(num).getCodigo(),
+                lista.get(num).getNome_P(),
+                lista.get(num).getTipo(),
+                lista.get(num).getQuantidade(),
+                lista.get(num).getValor_v(),
+               });
+            }
+            JOptionPane.showMessageDialog(null, "Listagem realizada com sucesso!!");
+            
+            } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, erro);
+        }
+    }
     public void listar() throws SQLException{
         Connection con = ConnectionFactory.getConnection();
 
@@ -282,7 +309,21 @@ public class ProdutosConsultaJD extends javax.swing.JDialog {
     
     
     private void produtoTabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produtoTabelaMouseClicked
-        //obtem a linha da tabela
+       
+        int row = produtoTabela.getSelectedRow();
+        
+        Produtos produtos = new Produtos();
+        
+        //coloca valores na instancia de produto
+        produtos.setCodigo((Integer) produtoTabela.getValueAt(row, 0));
+        produtos.setNome_P((String) produtoTabela.getValueAt(row, 1));
+        produtos.setTipo((String) produtoTabela.getValueAt(row, 2));
+        produtos.setQuantidade((Integer) produtoTabela.getValueAt(row, 3));
+        produtos.setValor_v((Float) produtoTabela.getValueAt(row, 4));
+        
+        this.dispose();    
+
+//obtem a linha da tabela
        /*String sql = "SELECT * from produtos where codigo =?";
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -330,7 +371,11 @@ public class ProdutosConsultaJD extends javax.swing.JDialog {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
     
+        //Obtém a tabela para trabalhar nela
+        tablemodel = (DefaultTableModel) produtoTabela.getModel();
         
+        //Limpa resultados anteriores
+        tablemodel.setRowCount(0);
         
     }//GEN-LAST:event_formComponentShown
 
