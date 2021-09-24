@@ -18,6 +18,7 @@ public class Venda {
     private String cpfCliente;
     private ArrayList<ItemVenda> itensVenda = new ArrayList<ItemVenda>();
     private Integer qtdItens;
+    private String pagamento;
     
 
     public Integer getId() {
@@ -88,6 +89,20 @@ public class Venda {
 
     public void setQtdItens(Integer qtdItens) {
         this.qtdItens = qtdItens;
+    }
+
+    /**
+     * @return the pagamento
+     */
+    public String getPagamento() {
+        return pagamento;
+    }
+
+    /**
+     * @param pagamento the pagamento to set
+     */
+    public void setPagamento(String pagamento) {
+        this.pagamento = pagamento;
     }
     
     

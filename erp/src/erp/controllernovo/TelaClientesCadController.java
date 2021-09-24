@@ -9,7 +9,7 @@ import erp.dao.ClientesDAO;
 import erp.jdbc.ConnectionFactory;
 import erp.objects.Clientes;
 import erp.telas.CadastroLogin;
-import erp.view.ViewCadastroCliente;
+
 import erp.view.ClienteCadJD;
 
 import java.sql.Connection;

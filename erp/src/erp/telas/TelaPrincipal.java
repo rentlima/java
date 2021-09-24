@@ -6,6 +6,7 @@
 package erp.telas;
 
 import erp.jdbc.ConnectionFactory;
+import erp.view.BaixaDeParcelas;
 import erp.view.ClienteCadJD;
 import erp.view.ClienteDelJD;
 import erp.view.ClientePesqJD;
@@ -15,7 +16,6 @@ import erp.view.ProdutosCadJD;
 import erp.view.RelatorioVendasJD;
 import erp.view.VendaViewJD;
 //import erp.view.VendaJD;
-import erp.view.ViewCadastroCliente;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Font;
@@ -57,7 +57,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         public void paint (Graphics g , JComponent c ){
             
             
-            g.setColor(new Color(102,102,102));
+            g.setColor(new Color(153,153,153));
             g.fillRect(0,0,c.getWidth(), c.getHeight());
         }      
         }); // fim do setUI
@@ -76,6 +76,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btn5.setOpaque(true);
         btn6.setContentAreaFilled(false);
         btn6.setOpaque(true);
+        btn7.setContentAreaFilled(false);
+        btn7.setOpaque(true);
         
         
       
@@ -110,6 +112,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btn5 = new javax.swing.JButton();
         btn6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btn7 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -119,6 +122,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -133,9 +137,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        uJPanelImagem1.setImagem(new java.io.File("C:\\Users\\Renato\\Desktop\\091093.png"));
+        uJPanelImagem1.setImagem(new java.io.File("C:\\Users\\Renato\\Desktop\\setup-gamer-dos-sonhos-capa-pl.jpg"));
 
-        jPanel2.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
         btnCadCliente.setBackground(new java.awt.Color(0, 88, 227));
         btnCadCliente.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
@@ -262,18 +266,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/49617_report_sales_icon.png"))); // NOI18N
 
         btn5.setBackground(new java.awt.Color(0, 88, 227));
-        btn5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 12)); // NOI18N
+        btn5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         btn5.setForeground(new java.awt.Color(255, 255, 255));
-        btn5.setText("NOVO BOTAO");
+        btn5.setText("Vendas/Parcelas");
         btn5.setBorder(null);
         btn5.setBorderPainted(false);
         btn5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn5.setFocusPainted(false);
 
         btn6.setBackground(new java.awt.Color(0, 88, 227));
-        btn6.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 12)); // NOI18N
+        btn6.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         btn6.setForeground(new java.awt.Color(255, 255, 255));
-        btn6.setText("NOVO BOTAO");
+        btn6.setText("Relatório de Produtos");
         btn6.setBorder(null);
         btn6.setBorderPainted(false);
         btn6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -281,19 +285,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/printer.png"))); // NOI18N
 
+        btn7.setBackground(new java.awt.Color(0, 88, 227));
+        btn7.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 12)); // NOI18N
+        btn7.setForeground(new java.awt.Color(255, 255, 255));
+        btn7.setText("NOVO BOTAO");
+        btn7.setBorder(null);
+        btn7.setBorderPainted(false);
+        btn7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn7.setFocusPainted(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -302,7 +315,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(btnRelatorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVendas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCadProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCadCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnCadCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,8 +345,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(btn5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(btn7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
                 .addGap(34, 34, 34))
         );
 
@@ -342,7 +358,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             uJPanelImagem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(uJPanelImagem1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1036, Short.MAX_VALUE))
+                .addGap(0, 1018, Short.MAX_VALUE))
         );
         uJPanelImagem1Layout.setVerticalGroup(
             uJPanelImagem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,6 +442,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem10.setText("Listar Vendas");
         jMenu5.add(jMenuItem10);
 
+        jMenuItem5.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuItem5.setText("Pagar Parcelas");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem5);
+
         jMenuBar1.add(jMenu5);
 
         jMenu1.setForeground(new java.awt.Color(255, 255, 255));
@@ -490,7 +515,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-         JOptionPane.showMessageDialog(null, "Em Desenvolvimento");
+         JOptionPane.showMessageDialog(null, "Em Desenvolvimento\nVersão 1.0 \n ");
+
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -605,6 +631,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn4ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        BaixaDeParcelas baixa = new BaixaDeParcelas(this, rootPaneCheckingEnabled);
+        baixa.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -650,6 +681,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn4;
     private javax.swing.JButton btn5;
     private javax.swing.JButton btn6;
+    private javax.swing.JButton btn7;
     private javax.swing.JButton btnCadCliente;
     private javax.swing.JButton btnCadProduto;
     private javax.swing.JButton btnRelatorio;
@@ -670,6 +702,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel2;

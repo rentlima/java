@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -39,6 +41,15 @@ public class RelatorioVendasJD extends javax.swing.JDialog {
     public RelatorioVendasJD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+    
+    
+    public void mostrarRelatorio(){
+        JasperPrint a = new JasperPrint();
+        JasperViewer jv = new JasperViewer(a);
+        jv.setVisible(true);
+
+        
     }
 
     /**
@@ -358,7 +369,7 @@ public class RelatorioVendasJD extends javax.swing.JDialog {
     public void preencherTabelaVendas(){
         try{ 
          Connection con = ConnectionFactory.getConnection();
-        String sql = "Select id as ID , data as Data , subtotal as ValorTotal, nomeCliente as Cliente, cpfCliente as CPF , id_cliente as ID_Cliente from tbvendas where data = ?";
+        String sql = "Select id as ID , data as Data , subtotal as ValorTotal, nomeCliente as Cliente, cpfCliente as CPF , id_cliente as ID_Cliente, tipo_pagamento as Tipo_de_Pagamento from tbvendas where data = ?";
         PreparedStatement st = con.prepareStatement(sql);
         st.setString(1, txtData.getText());
         ResultSet rs = null;

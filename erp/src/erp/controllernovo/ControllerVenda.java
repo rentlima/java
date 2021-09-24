@@ -70,13 +70,14 @@ public class ControllerVenda {
         try {
             Connection con = ConnectionFactory.getConnection();
             ResultSet rs = null;
-            PreparedStatement st = con.prepareStatement("update tbvendas set data=?,subtotal=?,nomeCliente=?,cpfCliente=?,id_cliente=? where id= ?");
+            PreparedStatement st = con.prepareStatement("update tbvendas set data=?,subtotal=?,nomeCliente=?,cpfCliente=?,id_cliente=? , tipo_pagamento=?  where id= ?");
             st.setString(1, mod.getData());
             st.setFloat(2, mod.getSubTotal());
             st.setString(3, mod.getNomeCliente());
             st.setString(4, mod.getCpfCliente());
             st.setInt(5, codigo );
-            st.setInt(6, mod.getId());
+            st.setString(6, mod.getPagamento());
+            st.setInt(7, mod.getId());
             st.execute();
             JOptionPane.showMessageDialog(null, "Venda Finalizada");
         } catch (Exception e) {
