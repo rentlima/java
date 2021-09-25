@@ -25,8 +25,8 @@ public class ControllerParcelamentoVendas {
         st.setInt(1, obj.getCodVenda());
         st.setFloat(2, obj.getValor_venda());
         st.setFloat(3, obj.getValor_total());
-        st.setFloat(4, obj.getValorParcela());
-        st.setInt(5, obj.getNumeroParc());
+        st.setInt(4, obj.getNumeroParc());
+        st.setFloat(5, obj.getValorParcela());
         st.setString(6, obj.getDataVenc());
         st.execute();
         

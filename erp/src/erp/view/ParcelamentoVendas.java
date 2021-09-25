@@ -178,6 +178,7 @@ public class ParcelamentoVendas extends javax.swing.JDialog {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 170, 40));
 
+        txtCodigoVenda.setEditable(false);
         txtCodigoVenda.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         getContentPane().add(txtCodigoVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 170, -1));
 
@@ -206,6 +207,7 @@ public class ParcelamentoVendas extends javax.swing.JDialog {
         });
         getContentPane().add(txtValorVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 170, -1));
 
+        txtValorTotal.setEditable(false);
         txtValorTotal.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         getContentPane().add(txtValorTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 170, -1));
 
@@ -295,7 +297,7 @@ public class ParcelamentoVendas extends javax.swing.JDialog {
             }
             j++;
         }
-        JOptionPane.showMessageDialog(null, "Parcelas Geradas.\n Venda Finalizada!");
+        JOptionPane.showMessageDialog(null, "Parcelas Geradas.\nVenda Finalizada!");
         
         this.dispose();
         

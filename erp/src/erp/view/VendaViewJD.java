@@ -6,13 +6,9 @@
 package erp.view;
 
 import erp.controllernovo.ControllerVenda;
-import erp.dao.ClientesDAO;
 import erp.jdbc.ConnectionFactory;
-import erp.objects.Clientes;
 import erp.objects.ModeloTabela;
-import erp.objects.Produtos;
 import erp.objects.Venda;
-import java.awt.Color;
 import java.awt.Font;
 import java.sql.Connection;
 
@@ -20,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,9 +40,10 @@ public class VendaViewJD extends javax.swing.JDialog {
     float preco_produto,total = 0;
     private ProdutosConsultaJD consultaProduto;
     ModeloTabela modelo;
-    
     ControllerVenda controleVenda = new ControllerVenda();
     Font font = new Font("Yu Gothic UI Semibold",Font.PLAIN,12);
+    DecimalFormat formato;
+    
     /**
      * Creates new form VendaViewJD
      */
@@ -71,6 +69,11 @@ public class VendaViewJD extends javax.swing.JDialog {
         txtDinheiro.setText("0");
         tabelaPesquisa.getTableHeader().setFont(font);
         tabelaItensVenda.getTableHeader().setFont(font);
+        
+        formato = new DecimalFormat("#0.00");
+        
+        txtDinheiro.setEnabled(false);
+        txtDesconto.setEnabled(false);
     }
 
       VendaViewJD(java.awt.Dialog parent, boolean modal) {
@@ -89,6 +92,18 @@ public class VendaViewJD extends javax.swing.JDialog {
         SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
         Date atual = new Date();
         jftData.setText(data.format(atual));
+        txtValorTotal.setText("0");
+        txtDesconto.setText("0");
+        txtDinheiro.setText("0");
+        tabelaPesquisa.getTableHeader().setFont(font);
+        tabelaItensVenda.getTableHeader().setFont(font);
+        
+        formato = new DecimalFormat("#0.00");
+        
+        
+        
+        txtDinheiro.setEnabled(false);
+        txtDesconto.setEnabled(false);
         
     }
 
@@ -682,7 +697,7 @@ public class VendaViewJD extends javax.swing.JDialog {
          
         try {
             preencherProduto();
-            somaProdutos();
+
         } catch (Exception e) {
         }
 
@@ -763,7 +778,8 @@ public class VendaViewJD extends javax.swing.JDialog {
 
         pesquisarProdutos();
         
-        
+        txtDinheiro.setEnabled(true);
+        txtDesconto.setEnabled(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1059,9 +1075,9 @@ public class VendaViewJD extends javax.swing.JDialog {
    private void desconto(){
        if (txtDesconto.getText().isEmpty()){
            float desconto = 0;
-           txtValorTotal.setText(String.valueOf(Double.parseDouble(txtValorTotal.getText()) - desconto));
+           txtValorTotal.setText(formato.format(Double.parseDouble(txtValorTotal.getText()) - desconto).replaceAll(",","."));
        }else {
-        txtValorTotal.setText(String.valueOf(Double.parseDouble(txtValorTotal.getText()) - Double.parseDouble(txtDesconto.getText())));   
+        txtValorTotal.setText(formato.format(Double.parseDouble(txtValorTotal.getText()) - Double.parseDouble(txtDesconto.getText())).replaceAll(",", "."));   
        }
        
        
@@ -1122,7 +1138,7 @@ public class VendaViewJD extends javax.swing.JDialog {
            total =total + rs.getFloat("valor_v")*rs.getInt("qtd_produto");
        }
      
-       txtValorTotal.setText(String.valueOf(total));
+       txtValorTotal.setText(formato.format(total).replaceAll(",", "."));
       
     }catch (Exception e){
         JOptionPane.showMessageDialog(null, "Erro : " +e);
