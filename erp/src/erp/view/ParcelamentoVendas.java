@@ -105,6 +105,7 @@ public class ParcelamentoVendas extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(624, 500));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpCabecalho6.setBackground(new java.awt.Color(0, 88, 227));
@@ -248,6 +249,7 @@ public class ParcelamentoVendas extends javax.swing.JDialog {
         valor_parcela = valorvenda / quant_parcela;
         tabelaParcelamento.removeAll();
         try {
+            
             preencher();
         } catch (Exception e) {
         }

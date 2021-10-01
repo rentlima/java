@@ -20,7 +20,7 @@ public class ControllerParcelamentoVendas {
          Connection con = ConnectionFactory.getConnection();
        try{ 
        
-        String sql = "INSERT INTO parcela_venda (cod_venda ,valor_venda , valor_total , numero_parcela , valor_parcela , datavenc) values (?,?,?,?,?,?) ";
+        String sql = "INSERT INTO parcela_venda (cod_venda ,valor_venda , valor_total , numero_parcela , valor_parcela , datavenc ,situacao) values (?,?,?,?,?,?,?) ";
         PreparedStatement st = con.prepareStatement(sql);
         st.setInt(1, obj.getCodVenda());
         st.setFloat(2, obj.getValor_venda());
@@ -28,6 +28,7 @@ public class ControllerParcelamentoVendas {
         st.setInt(4, obj.getNumeroParc());
         st.setFloat(5, obj.getValorParcela());
         st.setString(6, obj.getDataVenc());
+        st.setString(7, "NÃO PAGO");
         st.execute();
         
         

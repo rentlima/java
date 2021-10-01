@@ -45,6 +45,7 @@ public class FornecedorJD extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Fornecedor");
+        setResizable(false);
 
         pnlCab.setBackground(new java.awt.Color(0, 88, 227));
 

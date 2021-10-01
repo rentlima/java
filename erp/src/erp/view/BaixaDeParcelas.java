@@ -68,6 +68,7 @@ public class BaixaDeParcelas extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jpCabecalho6.setBackground(new java.awt.Color(0, 88, 227));
         jpCabecalho6.setForeground(new java.awt.Color(255, 255, 255));
@@ -219,7 +220,7 @@ public class BaixaDeParcelas extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpCabecalho6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jpCabecalho6, javax.swing.GroupLayout.PREFERRED_SIZE, 691, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(

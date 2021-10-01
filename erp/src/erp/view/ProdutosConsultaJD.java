@@ -53,7 +53,7 @@ public class ProdutosConsultaJD extends javax.swing.JDialog {
     private DefaultTableModel tablemodel;
     public Produtos produto;
     public TelaPrincipal tela;
-    public VendaViewJD venda;
+    public VendaViewJD venda = new VendaViewJD(this, rootPaneCheckingEnabled);
 
     
 
@@ -86,18 +86,19 @@ public class ProdutosConsultaJD extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
+        setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(0, 50, 199));
+        jPanel2.setBackground(new java.awt.Color(0, 88, 227));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setMaximumSize(new java.awt.Dimension(853, 29));
         jPanel2.setMinimumSize(new java.awt.Dimension(853, 29));
 
-        lbCabecalho.setBackground(new java.awt.Color(0, 50, 199));
+        lbCabecalho.setBackground(new java.awt.Color(0, 88, 227));
         lbCabecalho.setForeground(new java.awt.Color(255, 255, 255));
         lbCabecalho.setText("Consulta produto da venda");
         lbCabecalho.setMaximumSize(new java.awt.Dimension(853, 29));
@@ -119,7 +120,7 @@ public class ProdutosConsultaJD extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nome do Produto");
 
-        btnPesquisar.setBackground(new java.awt.Color(0, 50, 199));
+        btnPesquisar.setBackground(new java.awt.Color(0, 88, 227));
         btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -315,11 +316,8 @@ public class ProdutosConsultaJD extends javax.swing.JDialog {
         Produtos produtos = new Produtos();
         
         //coloca valores na instancia de produto
-        produtos.setCodigo((Integer) produtoTabela.getValueAt(row, 0));
-        produtos.setNome_P((String) produtoTabela.getValueAt(row, 1));
-        produtos.setTipo((String) produtoTabela.getValueAt(row, 2));
-        produtos.setQuantidade((Integer) produtoTabela.getValueAt(row, 3));
-        produtos.setValor_v((Float) produtoTabela.getValueAt(row, 4));
+       venda.getTxtCodigo().setText( produtoTabela.getValueAt(row, 0).toString());
+       
         
         this.dispose();    
 

@@ -44,7 +44,6 @@ public class TelaLoginController {
             if (existe) {    // se existir , direcionar pro menu
                 view.dispose(); // metodo ira fechar a janela atual; no caso a TelaLogin
                 TelaPrincipal telaDeMenu = new TelaPrincipal();
-                //telaDeMenu.setResizable(false);//metodo para deixar a janela fixa
                 telaDeMenu.setVisible(true);
            
                 

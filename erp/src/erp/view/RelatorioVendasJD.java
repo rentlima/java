@@ -4,22 +4,32 @@
  * and open the template in the editor.
  */
 package erp.view;
+
 import erp.controllernovo.ControllerProdutos;
 import erp.controllernovo.ControllerProdutosItemVenda;
 import erp.controllernovo.ControllerVenda;
+import erp.dao.RelatoriosVendasDAO;
 import erp.jdbc.ConnectionFactory;
 import erp.objects.ModelProdutosItemVenda;
 import erp.objects.ModeloTabela;
 import erp.objects.Produtos;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -35,6 +45,8 @@ public class RelatorioVendasJD extends javax.swing.JDialog {
     ModelProdutosItemVenda modelProdutosItemVenda = new ModelProdutosItemVenda();
     ArrayList<ModelProdutosItemVenda> listaModelProdutosItemVendas = new ArrayList<>();
     ArrayList<Produtos> listaModelProdutos = new ArrayList<>();
+    RelatoriosVendasDAO dao = new RelatoriosVendasDAO();
+
     /**
      * Creates new form RelatorioVendasJD
      */
@@ -42,14 +54,12 @@ public class RelatorioVendasJD extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
-    
-    public void mostrarRelatorio(){
+
+    public void mostrarRelatorio() {
         JasperPrint a = new JasperPrint();
         JasperViewer jv = new JasperViewer(a);
         jv.setVisible(true);
 
-        
     }
 
     /**
@@ -75,8 +85,11 @@ public class RelatorioVendasJD extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setModal(true);
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -228,6 +241,15 @@ public class RelatorioVendasJD extends javax.swing.JDialog {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/novas/1582587_arrow_refresh_reload_rotate icon_icon.png"))); // NOI18N
         jButton2.setText("Alterar");
 
+        jButton3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/novas/24705_emblem_print_icon (1).png"))); // NOI18N
+        jButton3.setText("Imprimir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -235,8 +257,10 @@ public class RelatorioVendasJD extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(30, 30, 30)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -251,9 +275,10 @@ public class RelatorioVendasJD extends javax.swing.JDialog {
                 .addGap(41, 41, 41)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
@@ -262,20 +287,19 @@ public class RelatorioVendasJD extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-       preencherTabelaVendas();
+        preencherTabelaVendas();
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void tabelaVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaVendasMouseClicked
         try {
             int cod = (int) tabelaVendas.getValueAt(tabelaVendas.getSelectedRow(), 0);
-             preencherTabelaDetalhes("select * from tbvendas inner join tbitemvenda on tbvendas.id  = tbitemvenda.idVenda inner join produtos on tbitemvenda.idProduto = produtos.codigo where tbvendas.id = " +cod);
-        
-        }catch(Exception e ){
-            
+            preencherTabelaDetalhes("select * from tbvendas inner join tbitemvenda on tbvendas.id  = tbitemvenda.idVenda inner join produtos on tbitemvenda.idProduto = produtos.codigo where tbvendas.id = " + cod);
+
+        } catch (Exception e) {
+
         }
-       
-        
-        
+
+
     }//GEN-LAST:event_tabelaVendasMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -287,14 +311,10 @@ public class RelatorioVendasJD extends javax.swing.JDialog {
         } catch (Exception e) {
         }
 
-        
-        
         /*
          * LINHAS ABAIXO NÃO UTILIZADAS NO MOMENTO "ERRO NA EXCLUSÃO DA TBVENDA"
-        */
-        
-        
-        /*       int linha = tabelaVendas.getSelectedRow();
+         */
+ /*       int linha = tabelaVendas.getSelectedRow();
        int codVenda =(int) tabelaVendas.getValueAt(linha, 0);
        listaModelProdutos = new ArrayList<>();
        listaModelProdutosItemVendas = controller.getListaProdutosItemVendaController(codVenda);
@@ -320,118 +340,126 @@ public class RelatorioVendasJD extends javax.swing.JDialog {
       }
        
         
-        */
+         */
     }//GEN-LAST:event_jButton1ActionPerformed
-    
-    public void excluirVenda() throws SQLException{
 
-            
-           
-            Connection con = ConnectionFactory.getConnection();
-            ResultSet rs = null;
-            PreparedStatement st;
-            Statement stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
-            int linha = (int)tabelaVendas.getValueAt(tabelaVendas.getSelectedRow(), 0);
-            
-            rs =  stm.executeQuery("select * from tbvendas inner join tbitemvenda on tbvendas.id  = tbitemvenda.idVenda inner join produtos on tbitemvenda.idProduto = produtos.codigo where id = '"+linha+"' ");
-            
-            
-            try {
-                rs.first();
-                do {                    
-                    int qtdEstoque = rs.getInt("quantidade");
-                    int qtdVendida = rs.getInt("qtd_produto");
-                    int soma = qtdEstoque + qtdVendida;
-                    
-                    st = con.prepareStatement("update produtos set quantidade = ? where codigo = ? ");
-                    st.setInt(1, soma);
-                    st.setInt(2, rs.getInt("idProduto"));
-                    st.execute();
-                    
-                    st = con.prepareStatement("delete from tbitemvenda where idVenda = ?");
-                    st.setInt(1, rs.getInt("idVenda"));
-                    st.execute();
-                    
-                } while (rs.next());
-                st = con.prepareStatement("delete from tbvendas where id = ?");
-                st.setInt(1, linha);
-                st.execute();
-                st.close();
-                con.close();
-                
-                JOptionPane.showMessageDialog(null, "Venda Excluida");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro : " + e);
-            }
-            
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int linha = tabelaVendas.getSelectedRow();
+        int idVenda = (int) tabelaVendas.getValueAt(linha, 0);
+        try {
+            dao.gerarRelatorioVendaPDF(idVenda); // vai gerar pdf
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RelatorioVendasJD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
+            Logger.getLogger(RelatorioVendasJD.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    public void preencherTabelaVendas(){
-        try{ 
-         Connection con = ConnectionFactory.getConnection();
-        String sql = "Select id as ID , data as Data , subtotal as ValorTotal, nomeCliente as Cliente, cpfCliente as CPF , id_cliente as ID_Cliente, tipo_pagamento as Tipo_de_Pagamento from tbvendas where data = ?";
-        PreparedStatement st = con.prepareStatement(sql);
-        st.setString(1, txtData.getText());
-        ResultSet rs = null;
-        rs = st.executeQuery();
-        tabelaVendas.setModel(DbUtils.resultSetToTableModel(rs));
-        
-        
-       }catch (Exception e ){
-           JOptionPane.showMessageDialog(null,"ERRO : "+ e);
-       }
-    }
-    
-    public void resetarTabelaDetalhes(){
-       ArrayList dados = new ArrayList();
-        
-       String[] Colunas = new String[]{"Produtos","Quantidade"};
-       ModeloTabela modelo = new ModeloTabela(dados, Colunas);
-       tblDetalhes.setModel(modelo);
-       tblDetalhes.getColumnModel().getColumn(0).setPreferredWidth(400);
-       tblDetalhes.getColumnModel().getColumn(0).setResizable(false);
-       tblDetalhes.getColumnModel().getColumn(1).setPreferredWidth(256);
-       tblDetalhes.getColumnModel().getColumn(1).setResizable(false);
-       
-       tblDetalhes.getTableHeader().setReorderingAllowed(false);
-       tblDetalhes.setAutoResizeMode(tblDetalhes.AUTO_RESIZE_OFF);
-       tblDetalhes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
-    }
-    
-    public void preencherTabelaDetalhes(String SQL) throws SQLException{
-        ArrayList dados = new ArrayList();
-        
-        String[] Colunas = new String[]{"Produtos","Quantidade"};
-        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    public void excluirVenda() throws SQLException {
+
         Connection con = ConnectionFactory.getConnection();
         ResultSet rs = null;
-        Statement stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
+        PreparedStatement st;
+        Statement stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+        int linha = (int) tabelaVendas.getValueAt(tabelaVendas.getSelectedRow(), 0);
+
+        rs = stm.executeQuery("select * from tbvendas inner join tbitemvenda on tbvendas.id  = tbitemvenda.idVenda inner join produtos on tbitemvenda.idProduto = produtos.codigo where id = '" + linha + "' ");
+
+        try {
+            rs.first();
+            do {
+                int qtdEstoque = rs.getInt("quantidade");
+                int qtdVendida = rs.getInt("qtd_produto");
+                int soma = qtdEstoque + qtdVendida;
+
+                st = con.prepareStatement("update produtos set quantidade = ? where codigo = ? ");
+                st.setInt(1, soma);
+                st.setInt(2, rs.getInt("idProduto"));
+                st.execute();
+
+                st = con.prepareStatement("delete from tbitemvenda where idVenda = ?");
+                st.setInt(1, rs.getInt("idVenda"));
+                st.execute();
+
+            } while (rs.next());
+            st = con.prepareStatement("delete from tbvendas where id = ?");
+            st.setInt(1, linha);
+            st.execute();
+            st.close();
+            con.close();
+
+            JOptionPane.showMessageDialog(null, "Venda Excluida");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro : " + e);
+        }
+
+    }
+
+    public void preencherTabelaVendas() {
+        try {
+            Connection con = ConnectionFactory.getConnection();
+            String sql = "Select id as ID , data as Data , subtotal as ValorTotal, nomeCliente as Cliente, cpfCliente as CPF , id_cliente as ID_Cliente, tipo_pagamento as Tipo_de_Pagamento from tbvendas where data = ?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, txtData.getText());
+            ResultSet rs = null;
+            rs = st.executeQuery();
+            tabelaVendas.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO : " + e);
+        }
+    }
+
+    public void resetarTabelaDetalhes() {
+        ArrayList dados = new ArrayList();
+
+        String[] Colunas = new String[]{"Produtos", "Quantidade"};
+        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+        tblDetalhes.setModel(modelo);
+        tblDetalhes.getColumnModel().getColumn(0).setPreferredWidth(400);
+        tblDetalhes.getColumnModel().getColumn(0).setResizable(false);
+        tblDetalhes.getColumnModel().getColumn(1).setPreferredWidth(256);
+        tblDetalhes.getColumnModel().getColumn(1).setResizable(false);
+
+        tblDetalhes.getTableHeader().setReorderingAllowed(false);
+        tblDetalhes.setAutoResizeMode(tblDetalhes.AUTO_RESIZE_OFF);
+        tblDetalhes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+    }
+
+    public void preencherTabelaDetalhes(String SQL) throws SQLException {
+        ArrayList dados = new ArrayList();
+
+        String[] Colunas = new String[]{"Produtos", "Quantidade"};
+
+        Connection con = ConnectionFactory.getConnection();
+        ResultSet rs = null;
+        Statement stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
         rs = stm.executeQuery(SQL);
         try {
             rs.first();
-            do {                
-                dados.add(new Object[]{rs.getString("nome"),rs.getInt("qtd_produto")});
-                
+            do {
+                dados.add(new Object[]{rs.getString("nome"), rs.getInt("qtd_produto")});
+
             } while (rs.next());
-            
-            
+
         } catch (Exception e) {
         }
 
-       ModeloTabela modelo = new ModeloTabela(dados, Colunas);
-       tblDetalhes.setModel(modelo);
-       tblDetalhes.getColumnModel().getColumn(0).setPreferredWidth(400);
-       tblDetalhes.getColumnModel().getColumn(0).setResizable(false);
-       tblDetalhes.getColumnModel().getColumn(1).setPreferredWidth(256);
-       tblDetalhes.getColumnModel().getColumn(1).setResizable(false);
-       
-       tblDetalhes.getTableHeader().setReorderingAllowed(false);
-       tblDetalhes.setAutoResizeMode(tblDetalhes.AUTO_RESIZE_OFF);
-       tblDetalhes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
+        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+        tblDetalhes.setModel(modelo);
+        tblDetalhes.getColumnModel().getColumn(0).setPreferredWidth(400);
+        tblDetalhes.getColumnModel().getColumn(0).setResizable(false);
+        tblDetalhes.getColumnModel().getColumn(1).setPreferredWidth(256);
+        tblDetalhes.getColumnModel().getColumn(1).setResizable(false);
+
+        tblDetalhes.getTableHeader().setReorderingAllowed(false);
+        tblDetalhes.setAutoResizeMode(tblDetalhes.AUTO_RESIZE_OFF);
+        tblDetalhes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -478,6 +506,7 @@ public class RelatorioVendasJD extends javax.swing.JDialog {
     private javax.swing.JButton btnListar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
