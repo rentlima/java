@@ -8,8 +8,7 @@ package erp.controller;
 import erp.dao.UsuariosDAO;
 import erp.jdbc.ConnectionFactory;
 import erp.objects.Usuarios;
-
-import erp.telas.TelaLogin;
+import erp.telas.LoginNova;
 import erp.telas.TelaPrincipal;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -21,17 +20,21 @@ import javax.swing.JOptionPane;
  */
 public class TelaLoginController {
     
-    private TelaLogin view ;
+    //private TelaLogin view;
+    private LoginNova view;
 
-    public TelaLoginController(TelaLogin view) {
+   /* public TelaLoginController(TelaLogin view) {
+        this.view = view;
+    }*/
+    public TelaLoginController(LoginNova view) {
         this.view = view;
     }
 
     public void autenticar() throws SQLException {
         
         //buscar usuario da view
-        String login = view.getjTextFieldLogin().getText();
-        String senha = view.getjPasswordFieldSenha().getText();
+        String login = view.getTxtLogin().getText();
+        String senha = view.getTxtSenha().getText();
         
         Usuarios usuarioAutenticar = new Usuarios(login , senha);
         

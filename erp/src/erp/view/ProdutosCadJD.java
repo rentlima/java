@@ -238,7 +238,7 @@ public void restaurar(){ // faz o id ser salvo no vetor e o combobox ser preench
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtCusto_c.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
-        jPanel1.add(txtCusto_c, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 180, 30));
+        jPanel1.add(txtCusto_c, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 170, 30));
 
         txtValor.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         jPanel1.add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 180, 30));
@@ -249,7 +249,7 @@ public void restaurar(){ // faz o id ser salvo no vetor e o combobox ser preench
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel2.setText("Custo de compra :");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 120, 30));
 
         txtNome.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         txtNome.addActionListener(new java.awt.event.ActionListener() {

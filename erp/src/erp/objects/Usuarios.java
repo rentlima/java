@@ -31,6 +31,10 @@ public class Usuarios {
     public Usuarios() {
     }
 
+    public Usuarios(String login) {
+       this.login = login;
+    }
+
     public int getIduser() {
         return iduser;
     }

@@ -35,16 +35,15 @@ public class CadastroLogin extends javax.swing.JFrame {
      * Creates new form CadastroLogin
      */
     public CadastroLogin() {
-        
+
         initComponents();
         controller = new CadastroLoginController(this);
         jButton1.setContentAreaFilled(false);
         jButton1.setOpaque(true);
         jButton1.setBackground(Color.GREEN);
-      
 
     }
-    
+
     // terminar esse metodo , para fechar automaticamente a janela apos o cadastro
 /*public void actionPerformed(ActionEvent evento) {
         if (evento.getSource() == jButton1) {
@@ -68,7 +67,6 @@ public class CadastroLogin extends javax.swing.JFrame {
             System.exit(0);
         }
 }*/
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -173,16 +171,14 @@ public class CadastroLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            if (jPasswordFieldSenha.getText().equalsIgnoreCase(txtConfirmaSenha.getText())){
+            if (jPasswordFieldSenha.getText().equals(txtConfirmaSenha.getText())) {
                 controller.salvarUsuario();
-            }else {
-                JOptionPane.showMessageDialog(null, "Senhas informadas não se equivalem");
+            } else {
+                JOptionPane.showMessageDialog(null, "Preencha os campos de senha corretamente.");
             }
         } catch (Exception e) {
-            
+
         }
-        
-        this.dispose();
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -241,7 +237,15 @@ public class CadastroLogin extends javax.swing.JFrame {
     public void setjTextFieldUsuario(JTextField jTextFieldUsuario) {
         this.jTextFieldUsuario = jTextFieldUsuario;
     }
-    
+
+    public JPasswordField getTxtConfirmaSenha() {
+        return txtConfirmaSenha;
+    }
+
+    public void setTxtConfirmaSenha(JPasswordField txtConfirmaSenha) {
+        this.txtConfirmaSenha = txtConfirmaSenha;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
